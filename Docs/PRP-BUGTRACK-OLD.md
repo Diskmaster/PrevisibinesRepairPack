@@ -1,0 +1,1496 @@
+Deduplication tracker remaining:
+
+- Fallout4.esm \[ 259 (61 Persistent Exterior) of 3300 \] (First pass completed!)
+- Side note: MassFusion01 had a lot of false positives that need reviewed later.
+- DLC01Robot \[ 24 Interior of 358 \] (Main pass completed, remaining entries are for upstream)
+- DLC02Workshop01 \[ N/A \]
+- DLC03Coast \[ 39 Interior of 459 \] (Main pass completed, remaining entries are for upstream)
+- DLC04Workshop02 \[ N/A \]
+- DLC05Workshop03 \[ Completed \]
+- DLC06NukaWorld \[ 89 Interior of 977 \] (Main pass completed, see above)
+
+Current planned changes:
+
+- More commonwealth deduplication (exteriors)
+- A shrubbery.
+
+\(UF4OP bug numbers shown as Uxxxxx anything crossed out is implemented upstream, FCF is Frost Cell Fixes, krrptd's version of PRP\)
+CW - Commonwealth, FH - Far Harbor, NW - Nuka World, SHW - Sanctuary Hills World (Intro), GN - Goodneighbor, DC - Diamond City, NWM - Nuka World Market, NWA - Nuka World Amphitheater, FHVR - Far Harbor VR Simulation
+
+Models marked non-occlude (bandaid fix): 60138D1 (DLC04ZooCageWallTallDoorSingle01), DF8E9, 15C6B4, 19AEFF, 2039F7, 144F62, 90EE5
+
+Models in the Meshes/ folder have been contributed from everyone listed on the mod description page and their associated mods, if you have contributed and it's not on there, let me know so I can fix it.
+
+Known issues that can't be fixed by me at this time (mesh related):
+
+Current fixed issues list, anything marked 'Dedup' means Deduplication as in the record is at least one exact duplicated object reference at the same exact position in the associated plugin master file:
+
+🟥: Removed, 🟩: Added, 🟨: Changed
+
+TODO
+
+- New\ \[Various\] CC related compat updates. Work in progress.
+- New\ \[???\] I remember a mesh that had bad occlusion that I need to find and tag non-occlude.
+- New\ \[CorvegaAssemblyPlantExt01\] Seen a road chunk that has a bad occlusion set in the railing that needs looked at during a stream.
+- New\ \[Waterfront12\] Elevator group might need adjustment due to the mesh being one sided. TBD
+- New\ \[Various\] Fix 00163A1C placements (Eight MacDetailGreeble21 entries are in the wrong rotation, among other issues, held pending figuring out how to properly service the SCOL definition
+- New\ \[Various\] Went through and updated a **lot** of existing meshes in base game and UF4OP/PRP to not have absolute paths anymore. This won't fix missing texture and material paths, but unlocks texture swaps that did not work correctly until this point. This affects mostly home meshes and buildings in areas like Concord and such. If there's outliers as a result of this fix that looks rather awful, file a bug. The updated filename and SCOL meshes will NOT be on the git repo due to filesize. (Updated, was in Build 71, skipping for 72, local testing did not have much improvement, this will be done again at a later date)
+- New\ \[DLC01Lair01\] 0100BD35 and neighbors might need z-adjustment to fix a floor seam.
+- New\ \[Various\] Reapply all non-occluder meshes as copied base records and apply them to fix issues previously bandaid'd to minimize issues. (Dev note: 060138D1, 30314, 72375, 89720, 89721, 89722, 89726, 89727, 90EE5, DF8E9, 15C6B4, 19AEFF, 2039F7, 144F62)
+- New\ \[Various\] Reconcile with UFO4P 2.1.6
+- New\ \[-22, 1, CW\] Adjust the navmesh (ugh) and also figure out what to do about 855D2 (WrhsPlatStairsDown01Terrain01 missing collision)
+
+75
+
+
+- New\ \[-20, -35, CW\] **U34284** Futz with the landscape to address a decent sized hole in the Glowing Sea. Location needs verified.
+- New\ \[-23, -7, CW\] Lowered 85896 to hide a missing side of the sidewalk chunk. Also, lower 169089 so it doesn't float.
+- New\ \[-6, 3, CW\] Lower 86476, 8645A, 8645F, 86461, 86462, 8645E and make minor adjustments to the Landscape to get a garage from sticking out too far from it's attached house. Also fix misalignments while I'm here, including 86458
+- New\ \[-22, 1, CW\] Adjust 855C7 position to remove a small gap to it's neighbors.
+- New\ \[-9, -4, FH\] Adjusted position for the infamous floating hook 03050836 to move it to a nearby hovel so it's sticking in the wall. This is a temporary move, I want to give this some proper treatment.
+- New\ \[-11, -17, CW\] Adjust 165E88 and 165EA0 to fix mesh seams and make it look slightly more natural.
+- New\ \[-22, 22, CW\] Update texture swap for B1303 to allow for collection identification. (Use Materials\SetDressing\Signage\BillboardSignPRP.BGSM)
+- New\ \[GoodneighborTheMemoryDen\] Adjust 236BC7 to try and resolve distant z-fighting. Needs checked.
+- New\ \[-23, -5, CW\] Fix errant placement for 1484F5 so that it's actually on the ground and not over five thousand units below the ground.
+- New\ \[1, -5, CW\] Move 1AE91C, 17C6BA to fix z-fighting, and also close a placement hole.
+- New\ \[-21, 5, CW\] Move 152AA1 through 152AA6 to stop static refs poking out of a trailer.
+- New\ \[CambridgeCollegeAdminBuilding\] Nudge 23B0D4 to fix z-fighting.
+- New\ \[-6, 0, CW\] Nudge AAF75 to fix a crack near a CIT building.
+- New\ \[-20, 21, CW\] Round 22D66 pos in an attempt to make umbra shut up.
+- New\ \[7, -6, CW\] **U28590** Update 1BB400 to it's non-occluder equivalent to fix a void hole when the door's open.
+- New\ \[7, -10, CW\] Update MSwap 1C33DD as per DoubleYou to fix a material file spelling error that caused the material not to be correctly referenced which fixes ref 0020D832 which is a precombined billboard in Southern Boston
+- New\ \[-5, -5, CW\] Adjust 15D507 and 27099 to make the Diamond City graffiti not disappear at certain angles (x-fighting)
+- New\ \[DmndRadio01\] Adjust C6391 to plug a hole to the void.
+- New\ \[HardwareTown01\] Adjust 170B9C to fix z-fighting
+- New\ \[-2, 2, CW\] Fix 16FB00 stairs position to not clip the window.
+- New\ \[-2, 1, CW\] Adjust placement of 17241A to plug a tiny crack in the wall.
+- New\ \[USAFSatellite01\] Fix z-fighting, 75BD3
+- New\ \[DmndRadio01\] Fix floating 146F80 Console SCOL. (forwardable?)
+
+74
+
+- New\ \[Various\] Hopefully all the remaining instances of dynamic disables that need covered.
+- New\ \[Vaults\] Fix enable state of locker references for the vault suit compatibility. They were incorrectly set due to me not paying attention.
+- New\ \[MassPikeTunnel01\] Port over new wall records from x02 CC to fix an issue for those who don't actually have the CC (dynamically disable the newly added records so that the new ones from the CC show up as expected.)
+- New\ \[CW, -13, 13\] Ran soften vertices (landscape editing) on the corner of Drumlin Diner (the one with the umbrella) to fix the appearance of floating foundation bits.
+- Changed\ \[CW, -8, 0\] Undo the delete for the two road chunks all the way back in 65.x, landscape needs adjusted accordingly.
+- New\ \[CW, -21, -2\] Merge HagenFixes.esp (replaces the wall piece with a window piece, realigns the exterior to match the interior (shifting the interior pops terrain up through the floor, so exterior had to be moved instead), and places some road pieces under a floating portion of wall next to the northeast door as per Glitchfinder)
+- New\ \[CW, -1, 4\] Add a missing house support beam to cover up a hole, also slightly adjust some house parts to minimize some z-fighting just above it. [support beam is upstreamable]
+- New\ \[CW, -4, 2\] Fix some material swap assignments near BF89E and patch a hole. [upstreamable, also review position later]
+- New\ \[Various\] CC related improvements. (Mostly for Heavy Flamer / Neon Flats so far)
+- New\ \[DLC04BottlingPlant01\] Dedup 06024C6A, 0602752F, 06027530, 06027531, 06027532, 0603D4A9, 06045479, 0604547A, 0604547B, 0604547C, 06045518, 06045519, 0604551A, 0604551B, 0604551C, 0604551D, 0604551E, 0604551F, 06045520, 06045521, 06045522, 06045525, 06045526, 06045527, 06045528, 06045529, 0604552A, 0604552B, 0604552C, 0604552D, 0604552E, 0604552F, 06045530, 06045531, 06045532, 06045533, 06045534, 06045535, 06045536, 06045537, 06045538, 06045539, 0604553A, 0604553B, 0604553C, 0604553D, 0604553E, 0604553F, 06045540, 06045541, 06045542, 06045543, 06045545, 06045546, 06045548, 06045549, 0604554A, 0604554B, 0604554C, 0604554D, 0604554E, 0604554F, 06045550, 06045551, 06045552, 06045553, 0603D2EE, 06045554, 06045555, 06045556, 06045557, 06045560, 06045561, 06045562, 06045563, 06045564, 06045565, 06045566, 06045567, 06045568, 06045569, 0604556A, 0604556B, 0604556C, 0604556D, 0604556E, 0604556F, 06045570, 06045571, 06045572, 06045573, 06045574, 06045575, 06045576, 06045577, 06045578, 06045579, 0604557A, 0604557B, 0604557C, 0604557D, 0604557E, 0604557F, 06045580, 06045581, 06045582, 06045583, 06045584, 06045598, 06045599, 0604559A, 0604559B, 0604559C, 0604559D, 0603D322, 0603D323, 0603D325, 0603D326, 0603D328, 0603D329, 060455AD, 060455AE, 060455AF, 060455B0, 060455C2, 060455C3, 060455C4, 060455C5, 060455C6, 060455C7, 060455C8, 060455C9, 060455CA, 060455CB, 060455CC, 060455CD, 060455CE, 060455CF, 060455D7, 060455DE, 06045641, 060456C4, 06045729, 0604572B, 0604572C, 0604580B, 0604580C, 0604580D, 06045813, 06045819, 0604581A, 06045820, 06045821, 06045822, 06045829, 0604582A, 06045830, 06045831, 06045832, 06045833, 06045834, 06045836, 06045857, 06045858, 06045859, 0604585A, 0604585B, 0604585C, 0604585D, 0604585E, 0604585F, 06045860, 06045861, 06045862, 06045863, 06045864, 06045865, 06045866, 06045867, 06045868, 06045869, 0604586A, 06045871, 060458AE, 060458AF, 060458B0, 060458BE, 060458BF, 060458C0, 060458D5, 060458D6, 060458D7, 060458D8, 060458D9, 060458DA, 060458DB, 060458DC, 060458DD, 060458DE, 060458DF, 060458E0, 060458E3, 060458E4, 060458E5, 060458E6, 060458E7, 060458E8, 060458E9, 060458EA, 060458EB, 060458EC, 060458ED, 060458EE, 060458EF, 060458F5, 060458F8, 060458F9, 060458FA, 060458FB, 060458FC, 060458FD, 060458FE, 0604590B, 0604590C, 0604590D, 0604590E, 0604590F, 06045910, 06045911, 06045912, 06045914, 06045915, 06045C54, 06045C55, 06045C56, 06045C57, 06045C58, 06045C59, 06045C5A, 06045C5B, 06045C5C, 06045C5D, 06045C5E, 06045C5F, 06045C60, 06045C61, 06045C62, 06045C63, 06045C64, 06045C65, 06045C66, 06045C67, 06045C68, 06045C69, 06045C6A, 06045C6B, 06045C6C, 06045C6D, 06045C6E, 06045C6F, 06045C70, 06045C71, 06045C72, 06045C73, 0603D40B, 0603D40C, 0603D40D, 0603D40E, 0603D40F, 0603D410, 0603D411, 0603D412, 0603D413, 0603D414, 0603D415, 0603D416, 0603D417, 0603D418, 0603D419, 0603D41A, 0603D41C, 0603D41D, 0603D41E, 0603D41F, 0603D42A, 0603D42B, 06055205, Also correct z-pos for 0603D5B0, 0603D5B1, 0603D5B2, 0603D5B3, And fix x-pos for 060568DF to better fit the wall.
+- New\ \[DLC04NukaWorldPowerPlant01\] Dedup 06016787, 06016788, 06016789, 0601678A, 0601678B, 0601678C, 0601678D, 0601678E, 06030425, 060331CE, 06033299
+- New\ \[DLC04WWMineCart01\] Dedup 06033CA3, 0604BBCE, 06055783
+- New\ \[DLC04BradbertonsOffice01\] Dedup 0600D0DE, 06036FF7, 06036FF8
+- New\ \[DLC04HubPackLair\] Dedup 060400FC
+- New\ \[DLC04GZVaultTec01\] Dedup 06011CBD, 06011CBE, 06011D84, 06011D86, 06011D87, 06011D88, 06011E24, 06027A9D, 06027AC1
+- New\ \[DLC04TransitCenter01\] Dedup 06022AB4
+- New\ \[DLC04GZNukaGalaxy01\] Dedup 06014F1E, 06014F23, 06019A34, 0601B9A7, 0601B9B1, 0601C671, 0603491D, 0603491E, 06034B25, 06034E0F, 06034E10, 06034E8D, 06034E8E, 060352E2, 060352ED, 060352EE, 06037BE6, 06037BE7, 06037CF6, 06037D01, 06037D02
+- New\ \[DLC04SafariWelcomeCenter\] Dedup 06031B5D, 06031BB1, 06031C16, 06033683, 060336E3
+- New\ \[DLC04HubFizztopMountainInterior01\] Dedup 0604A922, 060523DB
+- New\ \[DLC04SafariReptileHouse\] Dedup 06041FB5
+- New\ \[DLC04HubOperatorLair01\] Dedup 0602C365
+- New\ \[DLC04BottlingPlant02\] Dedup 0603A58F
+- New\ \[DLC04GZTheater01\] Dedup 06012F33, 060257FB
+- New\ \[DLC04Gauntlet01\] Dedup 0600C987, 0600C988, 0600CA12, 0600CA9B, 06029C7E
+- New\ \[DLC04KiddieKingdomTunnels01\] Dedup 0604CA6C
+- New\ \[DLC04GrandchesterMansion01\] Dedup 0601B364, 0602F9FE, 0604816A
+- New\ \[DLC04GZBattlezone01\] Dedup 0603545A, 060354B2
+- New\ \[DLC04KiddieKingdomFunHouse01\] Dedup 06020975, 06020977, 06020979, 0602ED92, 0602EED5, 0602EF13, 0602EF24, 0602EFE5, 0602EFE6, 0602F02B, 0603A1F5
+- New\ \[DLC04ColaCars01\] Dedup 06008E59, 06009D35, 06009DC3, 06009DC6, 06009DC9, 06009DCC, 06009DCF, 06009E61, 0600A0E4, 0603E150, 0603E151, 0603E23D
+- New\ \[DLC04KiddieKingdomTheater01\] Dedup 06032D10, 06032D18, 0603F38A
+- New\ \[DLC03VimPopFactory01\] Dedup 0301F588, 0301F5D4
+- New\ \[DLC03NucleusCommandCenter01\] Dedup 03024F05, 03024F07, 030279E1, 0304E479, 0304E47A
+- New\ \[DLC03Vault118\] Dedup 03022A92, 03044D1E, 0304AFD5, 0304D7BD, 0304D7BE
+- New\ \[DLC03PineCrestCavern01\] Dedup 030307D0
+- New\ \[DLC03FarHarborLastPlank\] Dedup 0303DEAD, 0303DEAE, 0303DEAF, 03040BC7
+- New\ \[DLC03EagleCoveTannery01\] Dedup 03014032, 030219FF
+- New\ \[DLC03BeaverCreekLanes01\] Dedup 0301C30D, 0301C37E
+- New\ \[DLC03NucleusSubInterior01\] Dedup 030416B0, 030416B1, 0304DCA5, 0304DCAC, 0304DCAD, 0304DCAE, 0304DCAF, 0304DCB0
+- New\ \[DLC03VimPopFactory02\] Dedup 03017BDC, 03024C5A, 03026EED
+- New\ \[DLC03Acadia\] Dedup 03045AA3
+- New\ \[DLC03AlderseaDaySpa01\] Dedup 0301F778, 03035502
+- New\ \[DLC03Nucleus\] Dedup 0303277B, 0303277D, 0303DF99
+- New\ \[DLC01Lair01\] Dedup 010009AC, 01000D46, 01001F3B, 01001578, 01003722, 01003D79, 010049EF, 01004D73, 01004D7E, 01002893, 01002895, 01007E95, 01007FD2, 01008D0D, 01008D0F, 010093C8, 010093C9, 010093CA, 010093CB, 0100962C, 0100962D, 0100980E, 0100A8DC, 0100AA00, 0100B7DC, 0100BD38, 0100BD39, 0100C510, 0100DF4D, 0100DF4E, 0100DF51, 0100DF52, 0100DF54, 0100DF55, 0100DF57, 0100DF58, 0100DF5A, 0100DF5B, 0100DFA4, 0100DFA5, 0100DFA6, 0100DFA7, 0100DFA9, 0100DFAA, 0100DFAB, 0100DFAC, 0100DFAF, 0100DFB0, 0100E113, 0100E167, 0100E168, 0100E169, 0100E16A, 0100E16B, 0100E16C, 0100E16D, 0100E16E, 0100E16F, 0100E170, 0100E171, 0100E172, 0100E173, 0100E174, 0100E175, 0100E176, 0100E177, 0100E178, 0100E179, 0100E17A, 0100E17B, 0100E17C, 0100E17D, 0100E17E, 0100E17F, 0100E180, 0100E181, 0100E182, 0100E183, 0100E184, 0100E185, 0100E186, 0100E187, 0100E188, 0100E189, 0100E18A, 0100E18B, 0100E18C, 0100E18D, 0100E18E, 0100E18F, 0100E190, 0100E191, 0100E192, 0100E193, 0100E194, 0100E195, 0100E196, 0100E197, 0100E198, 0100E199, 0100E19A, 0100E19B, 0100E19C, 0100E19D, 0100E19E, 0100E19F, 0100E1A0, 0100E1A1, 0100E1A2, 0100E1A3, 0100E1A4, 0100E1A5, 0100E1A6, 0100E1A7, 0100E1A8, 0100E1A9, 0100E1AA, 0100E1AB, 0100E1AC, 0100E1AD, 0100E1AE, 0100E1AF, 0100E1B0, 0100E1B1, 0100E1B2, 0100E1B3, 0100E1B4, 0100E1B5, 0100E1B6, 0100E1B7, 0100E1B8, 0100E1B9, 0100E1BA, 0100E1BB, 0100E1BC, 0100E1BD, 0100E1BE, 0100E1BF, 0100E1C0, 0100E1C1, 0100E1C2, 0100E1C3, 0100E1C4, 0100E1C5, 0100E1C6, 0100E1C7, 0100E1C8, 0100E1C9, 0100E1CA, 0100E1CB, 0100E1CC, 0100E1CD, 0100E1CE, 0100E1CF, 0100E1D0, 0100E1D1, 0100E1D2, 0100E1D3, 0100E1D4, 0100E1D5, 0100E1D6, 0100E1D7, 0100E1D8, 0100E1D9, 0100E1DA, 0100E1DB, 0100E1DC, 0100E1DD, 0100E1DE, 0100E1DF, 0100E1E0, 0100E1E1, 0100E1E2, 0100E1E3, 0100E1E4, 0100E1E5, 0100E1E6, 0100E1E7, 0100E1E8, 0100E1E9, 0100E1EA, 0100E1EB, 0100E1EC, 0100E1ED, 0100E1EE, 0100E1EF, 0100E1F0, 0100E1F1, 0100E1F2, 0100E1F3, 0100E1F4, 0100E1F5, 0100E1F6, 0100E1F7, 0100E1F8, 0100E1F9, 0100E1FA, 0100E1FB, 0100E1FC, 0100E1FD, 0100E1FE, 0100E1FF, 0100E200, 0100E201, 0100E202, 0100E203, 0100E204, 0100E205, 0100E206, 0100E207, 0100E208, 0100E209, 0100E20A, 0100E20B, 0100E20C, 0100E20D, 0100E20E, 0100E20F, 0100E210, 0100E211, 0100E212, 0100E213, 0100E214, 0100E215, 0100E216, 0100E217, 0100E218, 0100E219, 0100E21A, 0100E21B, 0100E21C, 0100E21D, 0100E21E, 0100E21F, 0100E220, 0100E221, 0100E222, 0100E223, 0100E224, 0100E225, 0100E226, 0100E227, 0100E228, 0100E229, 0100E22A, 0100E22B, 0100E22C, 0100E22D, 0100E22E, 0100E22F, 0100E230, 0100E231, 0100E232, 0100E233, 0100E234, 0100E235, 0100E236, 0100E237, 0100E238, 0100E239, 0100E23A, 0100E23B, 0100E23C, 0100E23D, 0100E23E, 0100E23F, 0100E240, 0100E241, 0100E242, 0100E243, 0100E244, 0100E245, 0100E246, 0100E247, 0100EA00, 0100F4EF, 01010B64, 01010B65, 01010B66, 01010B67, 0101130B, 0101130C, 01000999, 01001273, 01001275, 01002488, 010024AD, 01002512, 01002517, 01002528, 0100252F, 01002534, 0100253D, 01002A1D, 01002A56
+- New\ \[CroupManor01\] Dedup 00148CD8, 00148CD9
+- New\ \[PrewarVault111\] Dedup 000CA5EB, 000CA5EA
+- New\ \[MaldenDrainage01\] Dedup 00056C91
+- New\ \[Switchboard\] Dedup 000B47B4
+- New\ \[CharlestownHouse01\] Dedup 002258A9
+- New\ \[BeaconHillApartments\] Dedup 00163AEB, 00218CB5, 00218CB7
+- New\ \[BADTFL01\] Dedup 001B449E, 000FEC73, 0002980B, 000298D9, 0002AF06
+- New\ \[BeantownBrewery01\] Dedup 001BA659, 00049594, 0004948D, 00140FAD
+- New\ \[MassStateHouse01\] Dedup 001E97A8, 001DE548, 001DE547, 001DE546, 001DE545, 001DE544, 001DE3B6, 001DE3B4, 001DE3A0, 001DE34E, 001D49C3, 001D496C, 001C3F54, 001C3F4F, 001C3F4D, 001C3F14, 001C3E60, 001B9BA5, 001B9BA1, 0019D54B, 0019D517, 0019D516, 0019D514, 0019D513, 0019D4FC, 0019D4F9, 0019D4EF, 0019D45C, 0019D452, 00194146, 00194143, 000D5BB5, 000D5B8E, 000D5B6F, 000D5B5C, 000D5A51, 000D4C62, 000D4273, 000CF415, 000CF411, 000CD37E, 000CCF46, 000CCD6F, 000CCD6C, 000CCD6A, 000CC7F5, 000CC7F4, 000CC7F3, 000CC7C4, 000CC7B1, 000CC792, 000CC791, 000CC790, 000CC78D, 000CC348, 000CC218, 000CB33F, 000CB33E, 000CB33D, 000CB33C, 000CB33B, 000CB256, 000CB255, 000CAD52, 000CAD51, 000CAD4F, 000CAA95, 000CAA93, 000CAA8C, 000CA882
+- New\ \[ConcordFactory\] Dedup 001BAA57
+- New\ \[ConcordSpeakeasy\] Delete 0023B70F, 001BD9EC [technically a duplicate but with a material swap applied, cut content?], Dedup 001BD9CC, 00078989, 0007897D
+- New\ \[BostonPublicLibrary01\] Dedup 0016312C, 0019DC9B, 0019DC9A
+- New\ \[RelayTowerInt15A\] Dedup 001B2A3B
+- New\ \[ShawHighSchool01\] Dedup 001BA53E, 0001B5E9, 0001B077, 000E6088, 000E6087
+- New\ \[LaytonTowers01\] Dedup 0015DA13, 0015D9FD
+- New\ \[MassFusion02\] Dedup 000F89E8, 000F8A41
+- New\ \[ParsonsState01\] Dedup 0006CF73, 00060954, 00189A61
+- New\ \[Financial13\] Dedup 001CCD12
+- New\ \[InstituteConcorse\] Dedup 0022999D, 00125D6C, [a few others that need punted to UF4OP]
+- New\ \[CollegeSquare01\] Dedup 0023B175, 000618CD, 00022DA0, 00022D9D
+- New\ \[FensStreetSewer01\] Dedup 00224AF3, 00205A06, 0018B023, 000B3C1E, 000B3BA0, 000B39C8, 000B39C5, 000B3951, 000B3935
+- New\ \[ConcordCivicAccess01\] Dedup 0004BC03
+- New\ \[PickmanGallery01\] Dedup 0020E963, 000E6E59, 000E6E52, 00087C8F, 0003828F, 0003835D
+- New\ \[SaugusIronworks01\] Dedup 0022B9FC, 002254CA, 000421B8, 00042016, 00042015, 00042014, 001223B1
+- New\ \[BostonPublicLibrary02\] Dedup 0015798F, 0015762A, 001575C3, 0015357B, 00100679
+- New\ \[ArcjetSystems01\] Dedup 0023D769, 00053B08, 00053AD5, 00053A52, 000DD0E6, 000DCE62, 00081D8F, 00081BF4, 0011AE9D
+- New\ \[Vault114\] Dedup 0013B6EC, 000AE5C8, 0007C02F, 0017101E
+- New\ \[RevereBeachStation01\] Dedup 0021BC44, 0021BA28, 0019DCB6, 0019DCB5, 0019DCAD, 0019DCAC, 0019DCA4, 0019DCA3, 000671ED, 00062495, 000623D8
+- New\ \[Financial06\] Dedup 001B1862, 001B184B
+- New\ \[TheBigDig01\] Dedup 0014B6EA, 0014B672, 0014B52C, 0014B52B, 00126CCE [upstream], 00126AB2, 00126AB0, 00126AAF, 00125E2E, 000C8853, 000BE64A, 000BE3D3, 0004F5D0, 001C65D2 [upstream], 00126C1C
+- New\ \[GoodneighborTheThirdRail\] Dedup 000CB706, 000CB705
+- New\ \[SuperDuperMart01\] Dedup 000ED6F6
+- New\ \[NationalGuardTrainingYard01\] Dedup 00070553
+- New\ \[SentinelSite01\] Dedup 00143B2C, 001314C1
+- New\ \[FederalRationStockpile01\] Dedup 001A43FF, 000233C7, 000369A6, 00036A97, 000F8FFA
+- New\ \[FaneuilHall01\] Dedup 0006335D, 00063347, 000632EE
+- New\ \[FortHagen01\] Dedup 000BB402, 000BB3FC, 001AD38D
+- New\ \[EastBostonPrep01\] Dedup 000C0C0D, 000C0BFC, 000C0B8A, 0014780E, 00037CE8
+- New\ \[PrydwenHull01\] Dedup 002179AA, 0006A3F2, 0006A3F1, 0006A3F0, 0006A3D6, 0006A3D5, 0018B954
+- New\ \[TheCastle01\] Dedup 00221B30, 00221B23
+- New\ \[ArcjetSystems02\] Dedup 000804D1
+- New\ \[Wattz01\] Dedup 00106B80, 0006F21B, 0006F214
+- New\ \[GoodneighborBobbisPlace\] Dedup 000CB64F
+- New\ \[FraternalPost11501\] Dedup 000D06AC, Adjust 245A0C slightly to not clobber nearby picture frame (looks tacky, upstream it), 000D068C, 00042AD6, 000427F4, 0003AB12, 0003AAEF, 0003A28F
+- New\ \[PrydwenHull03\] Dedup 0021630C
+- New\ \[CambridgeKendallHospital01\] Dedup 0022C9BA, 002129B2, 0020E805, 002043F3, 001F9991, 001F0F1C, 001F0F1B, 001EDC4A, 001EDBFE, 001ED8FC, 001ED834
+- New\ \[WarehouseIndustrialMachines\] Dedup 0019AA4C, 0017D3E1
+- New\ \[CambridgePD01\] Dedup 0010BDAD
+- New\ \[MiltonGeneral01\] Dedup 00113C2A, 00113C29, 00113C02, 00113C01, 00113C00, 00113BFF, 000E6572, 000E64AA, 000E67DB, 0002A1B0
+- New\ \[ConcordMuseum01\] Dedup 0018DEE2, 000A2797, 000A14B1, 00044175, 00044174, 00044173, 00044169, 00044167, 000440BC, 000440B7, 0005C67F, 00018069, 00017EB2, 00018938, 0001F191, 0001E9BD, 0001CBF9, 000B1A93
+- New\ \[GoodneighborOldStateHouse\] Dedup 0010B512, 0015A103
+- New\ \[REObject02Interior\] Dedup 0015B718
+- New\ \[GNN01\] Dedup 001FAAD5, 001FA831, 001FA6A2, 001F78E9, 0002D3E0, 0002DF26
+- New\ \[HubrisComics01\] Dedup 0018BB9E, 00144898, 00101D4B, 00101D4C, 00066953, 0006687C
+- New\ \[WaldenPond01\] Dedup 001D5294, 001D51F8, 0002F7D2
+- New\ \[PoseidonEnergy01\] Dedup 0009864A, 000A7E00, 000A777B, 000A777A, 000A7779, 000A7778, 000A7777, 000506F7, 0004F189, 00125872
+- New\ \[PoseidonEnergy02\] Dedup 0017AC34, 0017AC2F, 0017ABF8
+- New\ \[AndrewStation01\] Dedup 002049A6, 001B2474, 001A8836, 0009C709, 00074D42
+- New\ \[zLexingtonGarage\] Dedup 00222E56
+- New\ \[zUnusedSubwayTerminalShowcase\] Dedup 0010CB06, 0010CAB0, 00152A8D
+- New\ \[GoodneighborTheMemoryDen\] Dedup 0023B6D5
+- New\ \[HestersRobotics01\] Dedup 001525A6
+- New\ \[DmndOutfieldShengsHouse01\] Dedup 00139F78, 000C66F8
+- New\ \[MedfordMemorial01\] Dedup 0020B6CA, 0020B680, 0020B570, 00100921, 000A7B85, 0007DB3E, 0017D7BB [upstream], 0020B90D [upstream]
+- New\ \[Vault81\] Dedup 0022DA35, 0020A1D8, 001D1230, 001A6064 [upstream], 0023895F [upstream], 00238961 [upstream]
+- New\ \[UFOCrashSite01\] Dedup 00187020
+- New\ \[Theater16PearwoodResidences01\] Dedup 0021B6A4, 0021B69A, 0021B5DD, 001CC2FD
+- New\ \[Waterfront02\] Dedup 00219E47 [No bones about it, this femur was duplicated.], 001CA5AF
+- New\ \[EsplanadeChurch01\] Dedup 001AFF1D
+- New\ \[MassFusion01\] Dedup 000F8D63 [0015D453 is in the floor], 000F64D1, 000F64CF, 000920D3, 00092698, 000968D1, 00098C6E, 00098C82, 00098C83, 00098C84, 00098D18, 0009D4E1, 000F591B, 000F5931, 000F5C0B
+- New\ \[InstituteAdvSystems\] Dedup 001D0E31
+- New\ \[Vault81Secret\] Dedup 001AB354, 000B2BDA, 0011353C, 000D98E8, 00088326
+- New\ \[CambridgePolymerLabs01\] Dedup 000B3E53, 000A76C3, 0009C2BD [devnote: hidden by another ref], 0016D869, 00150613
+- New\ \[InstituteReactor\] Dedup 0012A1D4 [devnote: this one isn't tagged in FX layer, other is, report to UF4OP?]
+- New\ \[USSConstitution01\] Dedup 0018E52A
+- New\ \[InstituteTunnel01\] Dedup 00204F97, 00204F96, 00151144, 00150B3C, 00150B34, 00215FD0, also fix position and scaling on 198EF8
+- New\ \[GwinnettBrewery01\] Dedup 001F87B5, 000AD8AF, 000AD891, 0004E924, 0004E923, 0004E8B0
+- New\ \[Vault11402\] Dedup 000D3844
+- New\ \[zLexingtonApartments\] Dedup 001379D0
+- New\ \[SandyCovesHome01\] Dedup 000261F3, 0002560B
+- New\ \[MahkraFishpacking01\] Dedup 001C445E
+- New\ \[DmndArturosHouse01\] Dedup 000FCDC5
+- New\ \[FourLeafFishpacking01\] Dedup 0010F48D, 0010F25C, 0010F25B, 0016BB52
+- New\ \[RailroadHQ01\] Dedup 0003A44D, 000359CF, 00020A90, 00095C9B
+- New\ \[TrinityChurch01\] Dedup 000E55E0
+- New\ \[BostonCommon02\] Dedup 001AD601
+- New\ \[GlowingSeaPOIDB06Int\] Dedup 001F5F38, 001F5F37, 001F5F32, 001F5F31, 001F5C69, 001F59D0 [ACTI, UF4OP?]
+- New\ \[CambridgeEastCITRaiderCamp01\] Dedup 002263C5
+- New\ \[TheaterMassBayMedicalCenter02\] Dedup 001C570E
+- New\ \[-21, -2, CW\] Swap E4039 BunExtWall01 to BunExtWallWin01 to fix an issue with looking into the void of madness that is a level designer. [note: not actually done yet, needs done in xEdit]
+- New\ \[-10, 8, CW\] Attempt to simplify positioning of 2FAFC, 2FAFE, and 2FB04 to resolve an umbra floating point edge case. This will probably need reviewed again in 73.
+- New\ \[-23, -7, CW\] Import TunnelCap.esp from Glitchfinder ( ref https://discord.com/channels/830436661736243230/954847055824687215/1167188537674825759 src: CM PRP Bugs channel )
+- New\ \[SouthBoston25\] Dedup 0009B4C4, 0009B4C0, 0009B49A
+- New\ \[GeneralAtomicsGalleria01\] Dedup 001E3105, 0014342D, 000E7C28, 000E7C27
+- New\ \[zUnusedGrenades\] Dedup 000F98AB
+- New\ \[TheaterMassBayMedicalCenter01\] Dedup 00231711, 0023021B
+- New\ \[BackStreetApparel01\] Dedup 0006498C, 00087888
+- New\ \[Waterfront12\] Dedup 00223BAF, 0022FF24
+- New\ \[InstituteOldRobotics01\] Dedup 001C2196
+- New\ \[zUnusedFinancial23\] Dedup 0004EEB1, 0004E1C8
+- New\ \[Financial14\] Dedup 001CA716
+- New\ \[DmndCitySurplus01New\] Dedup 00139E19
+- New\ \[ShamrockTaphouse01\] Dedup 000F4337
+- New\ \[FensBank01\] Dedup 001B4A26
+- New\ \[FortHagen02\] Dedup 000D107B, 00099074
+- New\ \[UniversityPoint01\] Dedup 000ED671, 00034A53, 00034CB0
+- New\ \[zInstituteRotunda\] Dedup 0022DF1C, 000C762D, 000C3035, 000C1C5E, 000C0FC2
+- New\ \[WarrenTheater01\] Dedup 000B7FE6
+- New\ \[InstituteFEVlab\] Dedup 002274B1, 002274B0
+- New\ \[JamaicaPlain01\] Dedup 000E9A26, 0005C821
+- New\ \[ParsonsState02\] Dedup 0010EE5F
+- New\ \[zUnusedCellar02\] Dedup 000E1B7E
+- New\ \[FensKenmoreStation\] Dedup 00218559
+- New\ \[CambridgeParkingGarage01\] Dedup 0023CC2B
+- New\ \[BeaconHillBostonBugle\] Dedup 00150DE3, 00150DB2
+- New\ \[LongneckLukowskis01\] Dedup 000FE686, 000FE684, 000FE682, 000242DA, 0003F018, 0003F010
+- New\ \[NationalGuardTrainingYard03\] Dedup 001CB978, 001CB977, 001CB90F, 001CB90E
+- New\ \[BeaconHillPub\] Dedup 0016C4DF
+- New\ \[TheaterHub360\] Dedup 000CFC29, 000CF72C, 000CF729, 000CF728, 002262A8
+- New\ \[IrishPrideShipyard01\] Dedup 00136274, 000D6944, 000D623C, 000D61F7, 00165274, 00043139, 0004312F, 0004312E, 00043123, 00047AE0
+- New\ \[BostonMayoralShelter01\] Dedup 00170EB0, 00206444, 0020B266
+- New\ \[Vault95\] Dedup 002148F4, 0021489B, 000DFC62, 0014B0CA
+- New\ \[WestonWaterTreatment01\] Dedup 001ED2A4, 001ED099, 001302B5, 000E6B09 [other elevator object is linkref, this one isn't], 001F3952
+- New\ \[GeneralAtomicsFactory01\] Dedup 0021399E, 002138C5, 002135AE, 002134D1, 0019C830, 00099B3E, 000813C1, 000811E0
+- New\ \[CambridgeMonsignorPlaza01\] Dedup 0022C21A
+- New\ \[FederalSurvCenter01\] Dedup 000936D9, 0021B8A7, 0021FFE2
+- New\ \[BostonAirportRuins01\] Dedup 0020BC2A, 000D6BC2, 000B9A05, 000B9973, 0004D4A7, 0004CFF4, 00048D95
+- New\ \[OldGulletSinkhole01\] Dedup 0003A8E6
+- New\ \[MedTekResearch02\] Dedup 000C3620, 0007C972
+- New\ \[CovenantHQ01\] Dedup 00205B37, 0004E1DC
+- New\ \[Vault81Entry\] Dedup 0020A190, 00153933, 000A9CFA, 000A9CF9
+- New\ \[Vault111Cryo\] Dedup 001B5EBA, 001B0FF4, 001B0FF3, 000AD65D, 0008B8DC, 0005327E, 0005327F, 0002B5C4, 0002B5C6, 0002B5C9, 0002B5CB
+- New\ \[MedTekResearch01\] Dedup 0018F36B, 0001FC88, 0001FC87, 0001FB8D, 0008277F, 00082659, 00082657, 0007AE58, 0007ADDE, 0007ADDD, 0007ADDC, 0007ABE2, 000B03E7, 000B0446, 000B9103, 0022BEC7
+- New\ \[NationalGuardTrainingYard02\] Dedup 001CA0A2, 00174813, 000E3073, 000E305D
+- New\ \[CombatZone01\] Dedup 00205199, 0023B065
+- New\ \[NHMFreightDepot01\] Dedup 000AA220
+- New\ \[RelayTowerInt09\] Dedup 001B5AA1
+- New\ \[FallonsDepartmentStore01\] Dedup 001C05CF, 001C04D7, 001BDB23, 00174969
+- New\ \[PoseidonReservoir01\] Dedup 00053C09, 00053C05
+- New\ \[BunkerHill01\] Dedup 000FB0B0
+- New\ \[MassPikeTunnel01\] Dedup 0019C721, 0019C6EC, 0019C6BB, 0019C6AA, 001518B5, 000FC3A8
+- New\ \[NorthEndBoxingGym\] Dedup 001ACE9D, 000A5F84
+- New\ \[zPOIJoel06\] Dedup 00230C69
+- New\ \[MaldenCenter01\] Dedup 00049F35, 00049E11, 0019DCD1, 0019DCD0, 0011CBAA, 0005DA5A, 0005DA58, 0005DA56, 0005DA55, 000B2B9A, 000BA772, 001C490E
+- New\ \[GreentechGenetics01\] Dedup 000B9AC4
+- New\ \[NahantOceanSociety02\] Dedup 0020CCA0, 002052A4
+- New\ \[AtomatoysCorporateHQ01\] Dedup 000EE986, 000EE984, 00091BEE, 00091A06, 000916CD
+- New\ \[WestRoxboryStation01\] Dedup 0003F059, 0002D90F, 0002D8E9, 001780B3, 001780E9, 00178175, 001804A8, 00044922
+- New\ \[OldNorthChurch01\] Dedup 0006A9EC, 0006A9EB, 00066F3E
+- New\ \[CambridgeChurchGraveyard01\] Dedup 001BAF3B, 001BAE25
+- New\ \[Yangtze01\] Dedup 001B41FD, 0008BDFF, 0017F894, 0017F4F3, 0017F4F2, 0006291A
+- New\ \[GorskiCabin01\] Dedup 0006745D, 00067447
+- New\ \[CharlestownLaundry\] Dedup 001A054B
+- New\ \[DBTechHighSchool02\] Dedup 0019DD4F, 0019DD4E, 0019DD46, 0019DD45, 0019DD3D, 0019DD3C, 0019DD34, 0019DD33, 001951D7, 0014E482, 000E88D3
+- New\ \[VaultTecOffice01\] Dedup 0008E6D9, 0008E6D8, 0008E6D7, 0008E6D6, 0008E6D5, 0008E6D4, 0008E6D3, 0008E6D2, 0008E6D1, 0008E6D0, 0008E6CF, 0008E6CE, 0008E6CD, 0008E6CC, 0008E6CB, 0008E6CA, 0008E6C9, 0008E6C8, 0008E68D, 000496D7
+- New\ \[ParsonsState03\] Dedup 002172B5, 001F1D90
+- New\ \[SuffolkCountyCharterSchool01\] Dedup 001D35F0, 001D234C, 001CC4FC, 001938B9, 000F061B, 000EFF1F, 000EFD5F, 000EFD5C, 000EFD52, 00029D8E, 001D3707
+- New\ \[DBTechHighSchool01\] Dedup 000ABA50, 0014E25F, 000E2400, 000E2349, 0007E128, 0007CC49, 0007CC48, 0004849C, 0004849A, 00048422, 0004841F, 0004841E, 0004836D, 0004836C, 0004836B, 0004836A, 00048369, 00048368, 0003BFF7, 0003BDFD, 0003B90B, 0003B837, 0003B82F, 0003B82D
+- New\ \[DmndStandsCodman01\] Dedup 000C6DD3
+- New\ \[CaboutHouse01\] Dedup 00216ADE, 0015627D
+- New\ \[DmndSolomonsHouse01\] Dedup 000C6AB5 (pile of concrete near wall)
+- New\ \[TiconderogaStation01\] Dedup 00206017, 00205F05, 00047013
+- New\ \[MuseumOfWitchcraft01\] A duplicate set of railing was installed on the stairs. Scrap it. 001609F9
+- New\ \[6, 19, CW\] Fragment 1E75A0 to better finetune individual debris placement as a piece of it is floating. 
+- New\ \[zLexingtonApartments\] Nudge 137A00, 1379DE, 1379DF, 1379E1, 1379E2, 1379E3, 1379E7 for umbra happiness and hopefully eliminate seams.
+- New\ \[FortHagen02\] Duplicate the nearby HitDebrisPileCeiling03 and plug the hole at 9A003 [upstreamable]
+- New\ \[MassFusion01\] Slap in a brand new HitFloorSolidTop01 to fix up an oversight in the interior, as the above floor piece was designed to be seen one way. [todo: upstream]
+- New\ \[3, -2, CW\] Disable 20E937, reposition 16D4DE so it's not underground (on top of the shelving nearby), and move 20E92D away to compensate.
+- New\ \[3, -3, CW\] Update 195C0 to hopefully further resolve an umbra edge case.
+- New\ \[CorvegaAssemblyPlantExt01\] Disable 35D98 (Industrial lighting that appears to have been a dev leftover intended to be attached to a spotlight of some sort)
+- New\ \[14, 14, CW\] Shore up an umbra edge case nearest 247950
+- New\ \[USAFSatellite01\] Resolve minor z-flicker with 7521A and 75BD5 (trash decals near the quest object chest on the lower floor)
+- Changed\ \[Various\] Updated SCOL meshes to reflect the deadbrush mesh updates.
+- New\ \[CambridgeConstructionSiteWarehouse01\] **U33191** Update Materials\Architecture\Warehouse\WrhsRoofPlywood01.bgsm to be double sided so that a wood chunk isn't treated by the game as invisible.
+- New\ \[Various\] Apply location changes from the Dead Zone Fixes mod (max compat version).
+- Changed\ \[Various\] Resolve a file conflict between Flicker Fixer eXofixed and Glitchfinder's patch for BillBoardBldgVerticalSm03.nif
+- New\ \[1, 2, CW\] Cap a building hole with a DecoMainA1x2WinB01CapTop01 [todo: file bug upstream]
+- New\ \[Various\] New contributed model fixes. (RedR_SmBldg01_PumpMeterFREE01/02.nif, VltLGHallHalf01.nif, FancyLightSingleOff01.nif)
+- New\ \[CambridigePlumbing01\] Add WrhsMainLoftCatwalk meshes to non-occluder list.
+- New\ \[MassPikeTunnel01\] F1333 and five other shelves were rounded to satisfy umbra.
+- New\ \[Various\] Imported all applicable CC changes to vanilla records to prevent CC breaking specific interiors.
+- New\ \[4, 0, CW\] Fix 1C7283 position, Also, 000C467B; 000C467A; 000C4679; 000C4678; 000C4677; 00067311; 00067310; 0006730F; 0006730E; 0006730D; 000C467C; 00067324; 00067323; 00067322; 00067321; 00067320; 0006731F; 0006731E; 0006731D; 00067319; 00067318; 00067317; 00067316
+- New\ \[-10, 14, CW\] Fix floating Ashtray 347FF, needs forwarding to UF4OP
+- New\ \[AtomatoysCorporateHQ01\] Adjust EE899 in the ~~alicorn~~ horse robot factory to stop more z-fighting
+- New\ \[GoodneighborTheMemoryDen\] Adjust 10AFB9 to fix debris z-fighting.
+- Changed\ \[-3, -4, CW\] Adjust 1B61EC height and revert 1132f7 move. That one corner's going to be left as a construction failure for now.
+- New\ \[Vault114\] Nudge 7BF8E to hopefully resolve an umbra calculation error.
+- New\ \[5, -7, CW\] Nudge ACCC5 to resolve both z-fighting and a building gap nearby.
+- New\ \[18, -5, CW\] Lower 1de980 to the ground like it's supposed to be.
+- New\ \[TheaterHub360\] Resolve z-fighting for 226299 and 22627E
+- New\ \[1, -19, CW\] Fix angle of 230D45 stain.
+- New\ \[-6, -7, CW\] Fix angle of C94DE and C94DC to fix a few floor seams, among others in the area.
+- New\ \[NationalGuardTrainingYard02\] Move 707D0 so it's not intersecting rubble.
+- New\ \[-7, 27, CW\] Fix 239579 Rust bounds, also tune 365CD to make an edge Umbra case go away.
+- New\ \[BostonPublicLibrary02\] Move a worthless burnt magazine out from under a debris pile so it can be recycled. 15DD83
+- New\ \[-6, -4, CW\] Resolve an OSHA violation (z-fight) for 1B396F
+- New\ \[VaultTecOffice01\] Scale up 8F07D slightly to resolve z-fighting with it's neighbor 8F058 and it's reference group elevator parts. Also, round positions. This one may need tuned later.
+- New\ \[VaultTecOffice01\] Fix 496C2 (Poster)'s rotation on the Y axis to fix it from disappearing at certain angles.
+- New\ \[CambridgeCollegeAdminBuilding\] Update 23B0F9 wall stain to stop angle-fighting (disappearing on approach)
+- New\ \[CambridgePolymerLabs01\] Slightly shift the quartet of file cabinets (573D7, D9, D8, and DD) to remove wall z-fighting.
+- New\ \[-23, -1, CW\] Another landscape seam to patch near the road to Fort Hagen.
+- New\ \[-19, 22, CW (pending)\] Fix a landscape tear just below the Sanctuary bridge.
+- New\ \[-25, -1, CW\] Fix the Fort Hagen Satellite Array landscape tear now that I know how to do it, also disable 07393A09 (the ref UF4OP added with bug 32372 that I suggested to cover up the problem)
+- New\ \[-8, 2, CW\] Slightly shift 532E4 to fix tiny z-fighting with the doorway position.
+- New\ \[ArcjetSystems01\] Fix z-fighting with DD183 debris, also 5456F for the same.
+- New\ \[2, 6, CW\] Update POS of 166209 to fix a misalignment.
+- New\ \[2, 7, CW\] Adjust position of 15C38A to stop clipping through the neighboring console.
+- New\ \[BostonMayoralShelter01\] Fix position of 20B193, 20B194, and 20B195 to prevent y-fighting (no, you aren't misreading this, it's not z-fighting, it's a Y-AXIS conflict)
+- New\ \[1, 11, CW\] Lower 7EDED to close some shitty construction work in the settlement.
+- New\ \[8, 0, CW\] Reset scale on 0019DE07 to fix the world holes the smaller size was showing.
+- New\ \[FourLeafFishpacking01\] 0010F3A0 needed moved to fix a hole in the interior's room ceiling.
+- New\ \[Various\] Mesh updates from Glitchfinder, Exoclyps, and Pra, see git commit IDs a7beb7a, b68a0d7, 7aa2aa3, and 818bb0b for specifics.
+- New\ \[-7, -5, CW\] **U32904** The building hole nearest 1B50BA needs filled. Added new DecoMainA1x1Wall01 ref to cover it up. Found by ShadowoftheWind (CRP dev)
+- New\ \[21, 18, CW\] Fix 1AB0B6 positioning, as it appears perpendicular to the wall.
+- New\ \[1, 4, CW\] Update ref type for 17B565 and 17B567 from DecoMainC1x1WinA02Full01 to DecoMainC1x1WinA02Full02 to correct a window that shouldn't be able to be seen through.
+- New\ \[3, 1, CW\] **U32905** 169F5B needs grounded to properly serve it's purpose as a broken base of a lamp. Also slap down a new RWPieceWallAStr01 to cover up a mesh piece that's sticking out nearby.
+- New\ \[Fill me in\] **U32930** 13BC19 and 13BC1D position needs tuned to resolve z-flicker.
+- New\ \[Various\] Ossumpossum added a specular map to a set of railing meshes and these updated meshes will be considered in the next update for inclusion for building. This adds a new texture to the archive.
+- New\ \[6, -5, CW\] Fix position of 1BD2E7 to correct z-fighting with it's neighbor, lower 001F904D down to make the trash pile less floaty, 
+- New\ \[7, -6, CW\] Rounded 001B9ECC and 001B9ECA to hopefully fix a previs hole.
+- New\ \[6, -6, CW\] 0017F081 might need base model swapped to the no grate version to fix a lighting calculation issue. To be determined, as need to look ingame for this.
+- New\ \[6, -6, CW\] Tune positions of 001FF0A2, 001BD310, 001BD311, 00205630, 00205632, 00205631, and 001FF0A3 to fix rust stains bleeding into thin air.
+- New\ \[7, -6, CW\] Swap base defines of 001BD30E and 001BD30F, Also lower 00210627 to the ground.
+- New\ \[7, -5, CW\] Designate 1BB3FB as NoPrecombine (Glitchfinder import)
+- New\ \[6, -5, CW\] Additional object moves. D0233, 20557A, 205582, 205583, add new HitExtACapLongTop01 (Glitchfinder import)
+- New\ \[6, -6, CW\] Various object moves to fix up Shamrock Taphouse's roof. Refs 1BB389, 1BB38E, 1BB38F, 1BB390, 1BB396, 1BB397, 1BB398, 1BB399, 1BB39A, 1BB39B, 1BB39D, 1BB39E, 1BB39F, 1BB3A0, 1BB3A1, 1BB3A2, 1BB3A7, 1BB3A9, 1BB3AA, 1BB3AE, 1BB3AF, 1BB3FD. Also add missing CapLongTop01 refs as needed (Glitchfinder import)
+
+69
+
+- New\ \[Import\] Updated RR floor mesh contributed by Sakamoto-San in discord as per https://discord.com/channels/830436661736243230/954847055824687215/1075829817464868907. As per their description: The mesh is not linked to the material file and the specular map is not assigned in the material too, leading to a reflective/wet floor
+- New\ \[Various in FH\] Import the removed placement fixes from UF4OP that got removed as a result of U31597 (as of 2.1.5)
+- New\ \[Various\] Correctly push forward place name changes in UF4OP that somehow got overwritten, translators may have to review this.
+- 🟩 \[Various\] Import contributed meshes from ossompossum (deadshrub01-05.nif)
+- 🟩 \[13, 9, CW\] Dedup 0020FFBB, 0020FFBA, 0020FFB9, 0020FFB8, 0020FFB7, 0020FFB6, 0020FFB5, 0020FFB4, 0020FFB3, 0020FFB2, 0020FFB1, 0020FFB0, 0020FFAF, 0020FFAE, 0020FFAD, 0020FFAB, 0020FFAA, 0020FFA8, 0020FFA7, 0020FF46, 0020FF4A, 0020FF49, 0020FF48, 0020FF47, 0020FF46, 0020FF45, 0020FF44, 0020FF43, 0020FF42, 0020FF41, 0020FF40, 0020FF3F, 0020FF3E, 0020FF3D, 0020FF3C, 0020FF3B, 0020FF3A, 0020FF39, 0020FF38, 0020FF37, 0020FF36, 0020FF35
+- 🟩 \[10, 25, CW\] Dedup 001F03C3, 001F03C4
+- 🟩 \[6, -23, CW\] Dedup 0011D0B7
+- 🟩 \[6, -9, CW\] Dedup 001751F4
+- 🟩 \[5, -11, CW\] Dedup 00174EE9, 00174EEA, 00020F64
+- 🟩 \[1, -2, CW\] Dedup 00171877, 00171878, 0017187A, 0017187F, 00171881, 00171884, 00171886, 0017188A, 0017188D, 0017188F
+- ~~🟩 \[14, -21, CW\] Dedup 00204345 [U32765]~~
+- 🟩 \[4, 7, CW\] Dedup 000BF09E, 000BF11D
+- 🟩 \[3, 7, CW\] Dedup 000BF15D, 000BF168
+- 🟩 \[2, 7, CW\] Dedup 0015C3D8, 000E0168, 000D2CAF, 000D2CB0, 000D2CB1, 000D2CB2, 000D2CB3, 000D2CB4
+- 🟩 \[4, 6, CW\] Dedup 000BF0B1, 000BF0B2, 000BF0BE, 000BF0C5, 000BF0C7
+- 🟩 \[3, 6, CW\] Dedup 000BEFB8, 000BEFBB, 000BEFBD
+- 🟩 \[1, 6, CW\] Dedup 000D2D3A
+- 🟩 \[7, 5, CW\] Dedup 0023A7AE
+- 🟩 \[2, 5, CW\] Dedup 000BF32B, 000BF32C, 000BF32F
+- 🟩 \[1, 5, CW\] Dedup 000BF182, 000BF183, 000BF184, 000BF1AE, 000BF1B3, 000BF1C8, 000BF1C9, 000BF1CA, 000BF1E0, 000BF1F6, 000BF1F8, 000BF1F9, 000BF1FA, 000BF208, 000BF209, 000BF20A, 000BF21D, 000BF222, 000BF228
+- 🟩 \[6, 4, CW\] Dedup 0011934C, 0011934F, 00119352
+- 🟩 \[4, 4, CW\] Dedup 001CA1B2, 001193A1, 000BF2F7, 000BF2F8, 000BF2F9, 000BF2FA, 000D30DB [barely poking out of the neighboring junkpile, marked for delete], 000BF2FB, 000BF30E, 000BF31B
+- 🟩 \[3, 4, CW\] Dedup 000BF27C, 000BF293, 000BF298, 000BF29D, ~~000BF2A1 [U32772]~~, 000BF325, 000BF326
+- 🟩 \[2, 4, CW\] Dedup 000D2D1B, move BF1B8 to minimize clipping near a truck
+- 🟩 \[1, 4, CW\] Dedup 000D2D95, 000D2D9A, 000D2DBC, 000D2DC1
+- 🟩 \[6, 3, CW\] Dedup 0018214C
+- 🟩 \[5, 3, CW\] Dedup 001190E0
+- 🟩 \[4, 3, CW\] Dedup 000D303F
+- 🟩 \[3, 3, CW\] Dedup 0011A300
+- 🟩 \[2, 3, CW\] Dedup 00169EB4, 00085096
+- 🟩 \[6, 2, CW\] Dedup 001D403F
+- 🟩 \[5, 2, CW\] Dedup 0012E026, 00211FD9
+- 🟩 \[4, 2, CW\] Dedup 00117AFA, 001159D5
+- 🟩 \[3, 2, CW\] Dedup 0023C8B0, 00237EC3, 00117B2D, 00117B92
+- 🟩 \[2, 2, CW\] Dedup 00167EB3, 00175B34, 00218AA4
+- 🟩 \[5, 1, CW\] Dedup 00211FD7
+- 🟩 \[2, 1, CW\] Dedup 0024753C
+- 🟩 \[1, 1, CW\] Dedup 001B8FB6, 0010B73E, 0010B746, 001E48CC
+- 🟩 \[15, 22, CW\] Reposition 1C171D so it's not clobbering the neighboring highway railing.
+- 🟩 \[0, 5, CW\] Dedup 000BF17F, 000BF22B, 000BF22F, 000BF230, 000BF231, 000BF240, 000BF245, 000BF259
+- 🟩 \[0, 4, CW\] Dedup 00163589, 000891CD, 000D2E41
+- 🟩 \[0, 1, CW\] Dedup 000AAA5B, 0013B040, 00148B25, 001B8FD5, 001B8FD6, 001B8FD7, 001B8FD8, 001B8FD9, 001B8FDA [Dev: Filed U32764 for the hanging raider (1B8FD2 to 1B8FD4)]
+- 🟩 \[7, 0, CW\] Dedup 00134BED, 00134A17
+- 🟩 \[6, 0, CW\] Dedup 00184788, 0012F239, 000C378F, 000C3790, 00130CAA
+- 🟩 \[5, 0, CW\] Dedup 00130BD7, 00130BD5, 00130BD4, 00131F94
+- 🟩 \[4, 0, CW\] Dedup 001C3A89
+- 🟩 \[3, 0, CW\] Dedup 0017952B, 00179528, 00179522, 00179519, 00179518, 0013FCE7
+- 🟩 \[1, 0, CW\] Dedup 0010B7EB, 0016D578, 0016D5E9
+- 🟩 \[0, 0, CW\] Dedup 0023A105, 0023A104, 0023A10A, 0023A109, 0023A10B, 0023A10C, 0023A10D, 0023A10E, 0023A102, 0023A103, 0023A106, 0023A107, 0023A108 [Dev note: Dev leftovers it appears that were sunk below the ground at some point. Marked the entire mess for deletion]
+- 🟩 \[2, 14, CW\] Dedup 00102357 [Dev note: Strangely enough, this wall is covered on all sides by other walls. The hell is it doing here at all?]
+- 🟩 \[5, 13, CW\] Dedup 00239E19, 00239DED, 000FF091
+- 🟩 \[4, 13, CW\] Dedup 001EDF65
+- 🟩 \[1, 13, CW\] Dedup 000C9BB6 [Dev note: This reduces the shadow effect for the pipe in the area which is noticeable if you've seen vanilla]
+- 🟩 \[4, 12, CW\] Dedup 00082A9A
+- 🟩 \[2, 11, CW\] Dedup 00098453, 00098454
+- 🟩 \[7, 10, CW\] Dedup 001B47BD, 001B47BB
+- 🟩 \[4, 10, CW\] Dedup 0009820D
+- 🟩 \[3, 10, CW\] Dedup 0008493B, 00098F08, 00098F09, 00098F0A, 00098F0B, 00098F0C, 00098F0D, 00098F0E, 00098F0F, 00098F11, 00098F12, 00098F13, 00098F14, 00098F15, 00098F16, 00098F17, 00098F18
+- 🟩 \[1, 10, CW\] Dedup 0009E50E
+- 🟩 \[7, 9, CW\] Dedup 001B47C6
+- 🟩 \[3, 9, CW\] Dedup 000845F7
+- 🟩 \[6, 22, CW\] Dedup 000C864A
+- 🟩 \[2, 21, CW\] Dedup 000C55D6
+- 🟩 \[2, 20, CW\] Dedup 000EADB3
+- 🟩 \[1, 20, CW\] Dedup 000FD8B7
+- 🟩 \[1, 19, CW\] Dedup 001E2DB8
+- 🟩 \[0, 23, CW\] Dedup 00228762
+- 🟩 \[0, 19, CW\] Dedup 000EA4DA
+- 🟩 \[1, 26, CW\] Dedup 001414A0
+- 🟩 \[7, 24, CW\] Dedup 000CF9AA
+- 🟩 \[14, 7, CW\] Dedup 001F4007, 00043C42
+- 🟩 \[13, 7, CW\] Dedup 0019E5B8, 0017134B
+- 🟩 \[14, 6, CW\] Dedup 0003C83A, 0003C838
+- 🟩 \[10, 4, CW\] Dedup 000A571E
+- 🟩 \[11, 3, CW\] Dedup 000B8C34
+- 🟩 \[12, 2, CW\] Dedup 000EFAA9, 000EF985
+- 🟩 \[11, 2, CW\] Dedup 000D02A8
+- 🟩 \[10, 2, CW\] Dedup 0013B13C, 000D02EB, 0013F8B2
+- 🟩 \[13, 1, CW\] Dedup 000D2365
+- 🟩 \[11, 1, CW\] Dedup 001EEB5A
+- 🟩 \[11, 0, CW\] Dedup 0023CF8A, 000D6FEB, 000D6FE6
+- 🟩 \[8, 0, CW\] Dedup 0019DEBB, 001A30FB
+- 🟩 \[9, 15, CW\] Dedup 0003A306, ~~000DCCA8 [U32773]~~
+- 🟩 \[14, 14, CW\] Dedup 00225ED8, 0003C40D, 0003C428
+- 🟩 \[13, 14, CW\] Dedup 0002A579, 0007751E
+- 🟩 \[12, 14, CW\] Dedup 00077503
+- 🟩 \[11, 11, CW\] Dedup 00153148
+- 🟩 \[12, 10, CW\] Dedup 001EDF2B
+- 🟩 \[15, 9, CW\] Dedup 000481E9
+- 🟩 \[14, 9, CW\] Dedup 0015F000, 0015EFF0, 0015D5E0
+- 🟩 \[12, 9, CW\] Dedup 002100C2, 0020E36B
+- 🟩 \[9, 9, CW\] Dedup 0012443C
+- 🟩 \[14, 8, CW\] Dedup 0019F299, 00249079
+- 🟩 \[14, 23, CW\] Dedup 000DF41B
+- 🟩 \[10, 22, CW\] Dedup 00069846, 00069845, 00069844, 00069843, 00069842, 00069841
+- 🟩 \[14, 20, CW\] Dedup 001EE4F5
+- 🟩 \[15, 17, CW\] Dedup 00075576
+- 🟩 \[13, 17, CW\] Dedup 00096C2A
+- 🟩 \[12, 17, CW\] Dedup 00135E03, 00135E04, 00135E05
+- 🟩 \[15, 25, CW\] Dedup 001EE41D
+- 🟩 \[14, 25, CW\] Dedup 000E48F2
+- 🟩 \[9, 25, CW\] Dedup 00141637
+- 🟩 \[15, 24, CW\] Dedup 001EE3D6
+- 🟩 \[12, 24, CW\] Dedup 000EB120
+- 🟩 \[23, 7, CW\] Dedup 001BB777, 001BE0D5
+- 🟩 \[19, 6, CW\] Dedup 001BBAF7, 001BBB0C
+- 🟩 \[21, 5, CW\] Dedup 001CD400
+- 🟩 \[17, 4, CW\] Dedup 001F168D
+- 🟩 \[19, 3, CW\] Dedup 0011A59C
+- 🟩 \[18, 3, CW\] Dedup 0011C5F0
+- 🟩 \[16, 3, CW\] Dedup 001F30D3
+- 🟩 \[19, 2, CW\] Dedup 001D06D0
+- 🟩 \[23, 15, CW\] Dedup 001F7157
+- 🟩 \[20, 14, CW\] Dedup 001F0341
+- 🟩 \[19, 13, CW\] Dedup 000AD983
+- 🟩 \[18, 12, CW\] Dedup 000AD9B3, 001B5371
+- 🟩 \[16, 12, CW\] Dedup 000BB896, 001B56DF
+- 🟩 \[23, 11, CW\] Dedup 00159B85, 00159B88, 00159B84, 00159B87, 00159B86, 00159B80, 00159B64, 00159B59, 00159B4D, 00159B49
+- 🟩 \[22, 11, CW\] Dedup 00159B4E
+- 🟩 \[19, 11, CW\] Dedup 0021923C
+- 🟩 \[18, 11, CW\] Dedup 001B52A0
+- 🟩 \[23, 9, CW\] Dedup 001BDFBA
+- 🟩 \[22, 9, CW\] Dedup 001A6CC8
+- 🟩 \[21, 9, CW\] Dedup 001C339D, 001C339E
+- 🟩 \[19, 9, CW\] Dedup 00160FD1, 00160FD2, 00160FD3, 00160FD4
+- 🟩 \[18, 9, CW\] Dedup 000C5591, 000C5590, 000C558F, 000C558E, 000C5509, 000C5503, 000C5502, 000C54F8, 000C54B6, 000C54B5, 000C54B3, 000C54B2, 000C54A4, 000C54A3, 000C54A2, 000CAF45
+- 🟩 \[23, 8, CW\] Dedup 001BE0CE
+- 🟩 \[22, 8, CW\] Dedup 0013047F, 000D1609
+- 🟩 \[17, 8, CW\] Dedup 001BBAB9
+- 🟩 \[22, 23, CW\] Dedup 00158BCC, 00158BCB
+- 🟩 \[20, 22, CW\] Dedup 0019B8A6
+- 🟩 \[23, 21, CW\] Dedup 0012029B
+- 🟩 \[20, 21, CW\] Dedup 001D33ED
+- 🟩 \[23, 20, CW\] Dedup 0012037B, 001A4D3C
+- 🟩 \[22, 20, CW\] Dedup 001AE128
+- 🟩 \[23, 19, CW\] Dedup 0004CFE1, 0023A417
+- 🟩 \[22, 19, CW\] Dedup 001943A1, 00107E6B
+- 🟩 \[22, 18, CW\] Dedup 00238ACD, 000BD41F
+- 🟩 \[20, 18, CW\] Dedup 0022F475
+- 🟩 \[22, 17, CW\] Dedup 001A5108
+- 🟩 \[20, 17, CW\] Dedup 001AB15D, 001AB15E, 001AB15F [Review BB7CE and 1AB15C, duplicate SCOLs just shifted near each other]
+- 🟩 \[19, 24, CW\] Dedup 00185E1C, 00185E24
+- 🟩 \[25, 6, CW\] Dedup 000D17DB
+- 🟩 \[26, 5, CW\] Dedup 0019E982
+- 🟩 \[24, 15, CW\] Dedup 001F717E
+- 🟩 \[25, 11, CW\] Dedup 001B58AB
+- 🟩 \[24, 8, CW\] Dedup 001CAADF, lower 001BDF2F slightly to make the dirt pile mesh better with the expected ref
+- 🟩 \[2, -25, CW\] Dedup 001216CD
+- 🟩 \[2, -26, CW\] Dedup 0014A4E6
+- 🟩 \[2, -17, CW\] Dedup 00095372, 000F1C2E
+- 🟩 \[4, -18, CW\] Dedup 001232BA, 00055E75
+- 🟩 \[2, -18, CW\] Dedup 001F9864
+- 🟩 \[2, -19, CW\] Dedup 00087233
+- 🟩 \[1, -19, CW\] Dedup 00027FB2, 00027FB3
+- 🟩 \[3, -21, CW\] Dedup 000EC542
+- 🟩 \[7, -22, CW\] Dedup 0022C003
+- 🟩 \[6, -22, CW\] Dedup 0022C10F, 0011E5D4
+- 🟩 \[4, -22, CW\] Dedup 0011223C, tweak position of 11223A to make it not clip into the debris pile below.
+- 🟩 \[6, -23, CW\] Dedup 00056BCB
+- 🟩 \[3, -24, CW\] Dedup 0012190B
+- 🟩 \[1, -24, CW\] Dedup 0016D23E
+- 🟩 \[7, -10, CW\] Dedup 0007446F
+- 🟩 \[6, -10, CW\] Dedup 001CC832 [check 001CC833]
+- 🟩 \[5, -10, CW\] Dedup 00174EB0
+- 🟩 \[7, -11, CW\] Dedup 00074478
+- 🟩 \[6, -11, CW\] Dedup 0009168D, 001754B8, 001754BC
+- 🟩 \[5, -11, CW\] Dedup 00185AD0
+- 🟩 \[3, -11, CW\] Dedup 001CC140
+- 🟩 \[7, -12, CW\] Dedup 0009B80B, 00170567, 00170554, 001704EE, 001704D8, 001704D7, 001704B2
+- 🟩 \[2, -12, CW\] Dedup 0012904B
+- 🟩 \[1, -12, CW\] Dedup 001F04D8
+- 🟩 \[6, -14, CW\] Dedup 000EBA83
+- 🟩 \[5, -14, CW\] Dedup 001FE0EC
+- 🟩 \[5, -15, CW\] Dedup 0021519D
+- 🟩 \[2, -15, CW\] Dedup 000F1A72
+- 🟩 \[0, -11, CW\] Dedup 002130E8
+- 🟩 \[7, -1, CW\] Dedup 001AD4F9
+- 🟩 \[6, -1, CW\] Dedup 0005AA76, 000C3765, 001232F3, 001232F7, 0012B304, 00074BC7, 0001D090, 0001D091
+- 🟩 \[5, -1, CW\] Dedup 0012B339, 0012B34F, 0012B351, 0012B388, 000B9515
+- 🟩 \[4, -1, CW\] Dedup 00179413, 001C390B, 001C73AB
+- 🟩 \[3, -1, CW\] Dedup 001C7463, 001C7461, 001794B5, 001C3921
+- 🟩 \[2, -1, CW\] Dedup 00211DB8
+- 🟩 \[7, -2, CW\] Dedup 0021457A, 001E6E68, 001E6E67, 0005B7DD, 001E86FA, 001E86FB, 001E86FD, 001E86FE, 001E86FF
+- 🟩 \[6, -2, CW\] Dedup 0012BE30
+- 🟩 \[5, -2, CW\] Dedup 0022D68D, 00134130, 00134131, 0003A216, 0007866A, 00221451, 00221452, 00221455, 00237E5B
+- 🟩 \[4, -2, CW\] Dedup 001CC9C2, 001CC928, 001CC927, 0005B844, 0015B531, 0015B530, 0015B52F, 0015B4C1, 0011EF97, 0011EE86, 000976E6, 001C9212, 001C9236, 001C9237, 001C9269, 001D14D2, 002225CD, 002225CE, 002225CF, 002225D0
+- 🟩 \[3, -2, CW\] Dedup 001CC8D7, 0016D4EA, 001CF3AB, 001CF3AC
+- 🟩 \[2, -2, CW\] Dedup 0014528C
+- 🟩 \[7, -3, CW\] Dedup 001E6FCD, 001E6F9A, 001A82FD, 001A82FC, 0013A275, 000693CD
+- 🟩 \[6, -3, CW\] Dedup 001E4649, 00054FB2, 00044FF2, 00044FF1, 0003E387, 0003E388, 0003E38B, 0003E38C, 0003E38D, 0003E38E
+- 🟩 \[2, -7, CW\] Move 17BFC5 so it's not obviously clipping into the wall. What the shit. Also tune 17BF74 and 17BF97 so they look a bit more natural as the fixtures appear to have been thrown out.
+- 🟩 \[4, -6, CW\] Nudge 16C3CD and it's neighboring wall chunks, 16C3CB, 1767F4, 176805, and 176806 to correct obvious z-fighting of wall meeting wall.
+- 🟩 \[FortStrong01\] Delete 1E7321 that's embedded in the wall. What the fuck is that even doing there?
+- 🟩 \[DBTechHighSchool01\] Fix 1CEF1B Zpos slightly to correct z-fighting (decal vs rug)
+- 🟨 \[Documentation\] Starting with this version, documentation style update. Older notes will be updated and fleshed out at a later date.
+- 🟩 \[-3, 3, CW\] Tune 87420 and 8741F to placate Umbra and thus fix a "see through lane" between the two buildings. On a side note, the collision on the base objects looks a bit half assed.
+- 🟩 \[NatickSubstation\] Move 1622DF to hide a floating edge in the mesh as per Glitchfinder.
+- 🟩 \[BackStreetApparel01\] Adjust 64B6F, 1EF092 and 1EF0A2 to fix z-fighting and in the case of the last ref, make it look somewhat more natural for floor clutter.
+- ~~🟩 \[-7, -6, CW\] \[U32774\] Add a new RWPieceGrassStr01 next to it's brethren to plug a noticeable hole that was omitted in dev, clearly.~~
+- 🟩 \[3, -3, CW\] Tune 2D1DF and 19784 to make Umbra happy. What a pain.
+- 🟩 \[1, -7, CW\] More tuning for Umbra, 17EAB1. May have to return to this one. 
+- ~~🟩 \[AtomatoysCorporateHQ01\] \[U32775\] 1FB9FC is a duplicate desk, delete it and keep the other.~~
+- 🟩 \[0, 1, CW\] Adjust position of AAAA2, 1727F9, and 1727FA to close a hole inside a building.
+- 🟩 \[-21, 5, CW\] Move 17A344 forward enough to cover up a visible part of xxx and also 17A345 to get some errant leaves out of the underground part that was clipping through.
+- ~~🟩 \[3, -2, CW\] \[U32776\] Duplicate 1CF39E to plug a hole that lets players see up through the one sided building mesh.~~
+- 🟩 \[20, 8, CW\] Shift position of C9E75 to be somewhat less floaty. Position may need tuned further, but it's better looking than vanilla. Also fix the floating edge from 1085B9. Correct 1BBBDE and 1BBBDF to prevent some minor overlap.
+- ~~🟩 \[20, 8, CW\] \[U32777\] Add a ClutterGenShelfC next to 1BBBF0 to deal with an open end.~~
+- 🟩 \[-10, 14, CW\] Adjust 3480E and 30504 to fix a hole in the doorway and reduce umbra's confusion.
+- 🟩 \[1, 11, CW\] Fix a floating pile of leaves. 1E1956
+- 🟩 \[-21, -12, CW\] Update 2325D1 and 232379 positions to fix z-flicker.
+- 🟩 \[Various\] Add a bunch of XLRT exclusions for various picture frames as if they are assigned an XALP (Alpha) value, paint splotches or wear and tear show up correctly as the setting gets ignored in previsibine generation.
+- 🟩 \[ParsonsState01\] Update alpha cutoff value for 10D1B8, looks out of place with the above exclusions.
+- 🟩 \[2, -8, CW\] Dedup 1CFD27
+- 🟩 \[4, -8, CW\] Dedup 18822A, 19DD70, 19DD71
+- 🟩 \[1, -7, CW\] Dedup F45DA
+- 🟩 \[3, -7, CW\] Dedup 874E0, 137720
+- 🟩 \[4, -7, CW\] Dedup 000A52A1, 000A52A2, 000A52A3, 000A52A4, 000A51FA, 000A51F9, 000A51F8, 000A51F7, 000A51F6, 000A51F5, 000A51F1, 00087544, 000874C2, 001330F0, 001330EF, 001330A5, 0012E5BB, 0012E526, 0012E4CF, 0012E464, 0019DD67, 0019DD68, 000ACCC2 [devnote: It was either in this block or in one of the neighbors I may have accidentally deleted one more ref than expected. I'll manually review later.]
+- 🟩 \[5, -7, CW\] Dedup 00178E16, 000A526A, 000A5296, 000A5297
+- 🟩 \[6, -7, CW\] Dedup 0009F357, 00179A69, 0017BC1F
+- 🟩 \[1, -6, CW\] Dedup 00238373, 00182CF1, 001BFCBB, 0022F58D, 0022F58E, 0022F58F
+- 🟩 \[3, -6, CW\] Dedup 000AE381, 001D009A
+- 🟩 \[4, -6, CW\] Dedup 000CFF91, 000B714E, 000ADFF3, 000ADFF4, 00132EC6, 000D0FE5, 00178C1E, 000A529B, 000A529C, 000A529D, 000A529E, 000A52A0, 000A52AA, 000A52AD, 000A52D1, 000A52D5, 00133091, 00133092, 00133093, 00133094, 0016C2E1
+- 🟩 \[5, -6, CW\] Dedup 0012D4CE, 0012D4CD, 0012CA98, 0012CA97, 0012CA8F, 0012CA8E, 0012CA86, 0012CA87, 0012CA5A, 0012EA56, 00055474, 000A5204, 000A520A, 000A5216, 000A5218, 000A5219, 000A521E, 000A5223, 000A5235, 000A5236, 000A5237, 000A5238, 000A523B, 000A523C, 000A523E, 000A5241, 000A5242, 000A5243, 000A5244, 000A5245, 000A5257, 000A5258, 000A525B, 000A525C, 000A525D, 000A5265, 000A5266, 000A5267, 000A526E
+- 🟩 \[6, -6, CW\] Dedup 83997, 0004691F, 000D0231, 000A78CB, 000A78CF, 000A78F2
+- 🟩 \[7, -6, CW\] Dedup 001F1D23, 0004A69C, 0017BD0E, 0017BDB9
+- 🟩 \[1, -5, CW\] Dedup 001AE918, 0018990A, 0017C72A, 0018B15E, 0018B10A, 00176BB9, 0016F8D4
+- 🟩 \[4, -5, CW\] Dedup 001D79A0, 000B70C4, 000B8F06, 001BD202, 001F4490
+- 🟩 \[5, -5, CW\] Dedup 000A5281, 000A5255, 000A5253, 000A524D, 000A524C, 000A524B, 000A524A, 000A5249, 000A5215, 000A5214, 000A5212, 000A5210, 000A520F, 000A520D, 000A520C, 000A520B, 000A51FD, 000A3C50, 0002D08C
+- 🟩 \[6, -5, CW\] Dedup 0022D7AD, 0012CB63, 0012CB62, 001EEE95, 001EEE96, 001EEE97
+- 🟩 \[7, -5, CW\] Dedup 000B0338, 001259C1, 00180EAC, 00044741, 000468C4, 001BD2F5, 001FAC98
+- 🟩 \[1, -4, CW\] Dedup 000A1772, 000A176E, 001AE975
+- 🟩 \[3, -4, CW\] Dedup 0019AC8C, 00187B23
+- 🟩 \[4, -4, CW\] Dedup 001F44BE, 001D45F0, 001386B8, 001386B7, 001386B6, 001386B5, 0002CD7E
+- 🟩 \[5, -4, CW\] Dedup 00046546, 00116745, 0002D1A6, 0002D1A9, 001D7B43, 001D7B44
+- 🟩 \[6, -4, CW\] Dedup 001EB9EA, 001EB9E9, 001E45F6, 001E45F5, 001B1FED, 00051F24, 00051F21, 00051EEC, 00051EE6, 000517F2, 00046867, 001EEE78
+- 🟩 \[7, -4, CW\] Dedup 001E45FF, 001E45FE, 0004EE94, 001F1C47
+- 🟩 \[1, -3, CW\] Dedup 001718B6
+- 🟩 \[2, -3, CW\] Dedup 001CF95F, 0018B483, 00163ACF
+- 🟩 \[3, -3, CW\] Dedup 001CF2DF, 0018B531, 00044488, 00044489, do not deduplicate 001CCB4E and instead move it down to fix a missing building piece, ~~move 0023C79A away from 0023AEFA \[U32721\]~~
+- 🟩 \[4, -3, CW\] Dedup 001D14FA, 001D14F5, 001D14F4, 000C4ADF, 00118E7E, 00118E7F, 0002CBBB, 0002CBED, 0002CDE2, 002185B7
+- 🟩 \[5, -3, CW\] Dedup 0011485A
+
+65
+
+- \[PRP\] (-19, 20, CW): Community request. XLRT NoCombo 1F970 (NorthBridge / Sanctuary bridge) to support easy mesh replacement.
+- \[PRP\] (Various): Implement separated material swaps and update records accordingly, as per the Underwater Glass Fix mod.
+- \[PRP\] (-26, -12, CW): Delete DBB88 which appears to be a wild edit.
+- \[PRP\] (-6, 2, CW) Tune 1BA193, 1BA194, 97A6C, 1BA17A, 1BA183 positions to fix wall seams.
+- \[PRP\] (BeaconHillBostonBugle) Fix x rotation on 22C378 to make it look correct.
+- \[PRP\] (1, -3, CW; 2, -4, CW) 176BE3, 176BE1, 176BE0 round Z pos to make Umbra happy.
+- \[~~U32322~~, U32590, PRP\] Create a new texswap to correctly address the debris hole issue and tag references as needed. So far, only a few nearest -10, 15, CW need it. More will probably show up at some point. Refs 1D0AE3, 1D0B36, 1D0B46
+- \[PRP\] Remove the five leftover FullLOD entries that were mistakenly copied over from UF4OP in the update migration to 2.1.4. The deletes were intentional. Not removing these could adversely affect LOD generation.
+- \[U32582\] (GlowingSeaPOIDB05Int): Tune position of 1F41E1. It's not set up very well to be looted.
+- ~~\[U32572, FCF, PRP\] (7, -4): Swap 6662E door entry for static version. That door isn't going anywhere, and should not be interactable.~~
+- ~~\[U32571\] (-8, 9): Add a new DecoManBDam1x1WallTrimBtm02 to mask a small hole due to nearby building meshes being relatively one sided. Placement is not the best.~~
+- \[PRP\] (Vault75) 19F927 needs moved upwards to stop clipping into the neighboring tunnel. Apply 1E340B, 221215, 1A8BA8 XLRT for previs exclude.
+- \[U23169\] Backport post-UF4OP 2.1.4 fix for the bugfix so that the helper border meshes are initially disabled by default.
+- \[U32436\] ~~(-9, -4, CW): 23C285 appears to have strangely left under the ground, with the only evidence of it's existence being the top of a hook. Mark for deletion and let UF4OP properly deal with it. Thanks to Marvesly for the report.~~ Merged upstream. IPTO will clean it out later.
+- ~~\[U32437\] (1, 1, CW): 15C768 has a missing piece of flooring that's exposed to the ground. Add a pair of DecoLobbyA1x1Cor01 refs to cover this up.~~
+- \[PRP\] (-1, 0, CW): 13FE52 needs brought forward slightly to prevent z-fighting with neighboring buildings.
+- \[PRP\] (2, -4, CW): 17FD2D needs shifted slightly to make umbra happy.
+- \[PRP\] (-17, -12, CW): 14F9B7 got fragmented and two of the trees that were floating were grounded.
+- \[PRP\] (-21, -1, CW): 1A5BE0 needed raised up to not be embedded in the mattress it was previously on.
+- \[PRP\] (-3, 21, CW): A7D63 needs lowered to prevent floating tree disorder.
+- \[PRP\] (-6, 8, CW): 1F804B marked for deletion, as there's no reason to have a stain texture apply to the air.
+- ~~\[U32438\] (3, -2, CW): Add a BldgBrick1Story1x1Mid01 to prevent a fall through a big hole that you can't get out of scenario, nearest 163AE0~~
+- \[PRP\] (-24, 6, CW): 2773D needs nudged so it's not obviously showing it's missing sides.
+- \[U32439\] (-17, 10, CW): 199CC4 got shifted around so the skeleton's hand wasn't clipping through the boat. Placement may need redone.
+- \[PRP\] (-15, 18, CW): 22AFC needs shoved back to make the front part of the porch more believeable and not having a decent sized hole one can see through, also move 22B05 nearby as well.
+- \[PRP\] (USAFSatellite01): Fix rotation on 217B01, 147053 Fix position Z on 75BC6, 217AE7, 753D6, 75BD8 (z-fighting)
+- \[PRP\] (8, 9, CW): Shift position of 12F971 to fix the strange pothole of the roadcurve chunk clobbering with the landscape.
+- \[PRP\] (-16, -5, CW): Move 222F54 to bring that building up to code.
+- \[U32440\] (-1, 6, FH): Fix position of 03023EC4 to get it the hell away from the neighboring large as the xbox fern occlusion hitbox.
+- \[PRP\] (6, 15, CW): Lower a floating Bramble04 10204D, contributed by feeddanoob.
+- \[FCF\] (MassFusion01): Fix z-fighting on 924F2.
+- \[FCF\] (FederalRationStockpile01): Close wall seams with 39102, 39103, 39119
+- \[FCF\] (FaneuilHall01): Fix previs issues with doorways. 10D70F and 10D710
+- \[FCF\] (Theater16PearwoodResidences01): Correct another previs door issue. 1CC452, 1CC453
+- \[FCF\] (7, -2, CW): Move 1EAADB (rubble) to prevent players getting stuck.
+- \[FCF\] (-3, 24, CW): Apparently moved a roof chunk, 249A1
+- \[FCF\] (6, -1, CW): Add a missing ceiling panel.
+- \[FCF\] (-6, -7, CW): Add a missing metal wall part.
+- \[FCF\] (1, -2, NW): Add missing ceiling pieces nearest the NW gate.
+- \[PRP\] (-7, 0, CW): Pending moves of AAF10 and AAF11 to deal with a previs hole between the buildings.
+- \[PRP\] (ConcordMuseum01): Make 180B2, 180B3, and 180B4 more uniform placement. There's probably going to be some commentary about removing the soul of this infamous interior's broken design, but I had to do this to fix a tiny seam between the left most stair and the wood flooring. It's small but very noticeable if you are looking for it.
+- \[PRP\] (DLC01FortHagenSatelliteArray01): Revert the moves for all seven crates, and then tag them in XLRT with 1E819A NoObjectCombinationReftype
+- \[PRP\] (-7, -1, CW): Tag 2399FD with EnableMarker (187965)
+- \[U32441\] (-6, -1, CW): Also tag 07026EF7 with the same marker.
+- \[PRP\] (DmndSecurity01): Apply NoObjectCombinationReftype to 11A47F and 11A481 to fix previs generation.
+- \[PRP\] (Vault81Secret): Delete 1AB5AB (as per Glitchfinder, wrong matswap and duplicate mesh which was z-fighting), 08000031, 08000032, 08000033, 08000034 (placed to cover the prior object), 08000043, 08000044, 0800004E, 0800004F (double fix, they cover the gap that is fixed by some of my objects but do so with the wrong floor material), 08000030 (placed to cover z-fighting), 0800004D (duplicate of the existing object to fix a z-fighting error), 0800002F (z-fighting patch), 08000048 (z-fighting patch)
+  - Apply XRLT 1E819A as noted above to 08000049, 0800004B, 0800004C, 08000035, 08000036, 08000037, 08000038, 08000039, 0800003A, 0800003B, 0800003C, 0800003D, 0800003E, nudge 1AB5A3, 11236C, 882C8, D9B22, 88359, 113537, 113538, 19F0A5, 19F0A4
+- \[PRP\] (Vault81Entry): Apply XRLT 1E819A to 08000053 and 08000054, Delete A9D3E, A9D3D, A9CE0, Apply matswap 231e90 to 07010F9A, 000A9E43, 000A9E37, 000A9E3D, 000A9E40, 000A9E41, 000A9E42, 000A9E36, 000A9E3E, 000A9E3F, 000A9CEB, 000A9CE9, 000A9CEC, 000A9E38, 08000053, 08000054
+- \[PRP\] (Vault11402): Apply XRLT 1E819A to 0007E795, 000A416F, 0007E79A
+- \[PRP\] (Vault95): Apply XRLT 1E819A to 1ECC30, 60234, lower placement of 1A488B and 1A488C to hopefully fix PA walking clearance.
+- \[PRP\] (Vault75): Explicitly mark 07038FB1 UDR, as the Z adjustment to the underlying ref fixed it proper. Also apply the XRLT 1E819A to ALL the UF4OP added ref in this interior.
+- \[PRP\] (Vault75): 
+  - VaultDamageTheme01 Matswap 231e90: 001D4FF0, 001D4FE9, 001E347B, 001E347D, 001E347C, 001E343D, 001E3448, 000C276A, 001EB0A7, 001EB0A6, 001EB0A5, 001E34D1, 00210AAF, 00210AB1, 00210AB0, 00210AB2,  00210AB5, 00210AB7, 001A8BA7, 000C2723, 001E34AF, 001EB0A4, 00210B3D, 00210B3E, 00210B3B, 00210B3C, 001E345F, 001E3401, 000FCB5E, 000FCB73, 000FCB56, 000FCB49, 00210A8E, 00210A68, 00214AA1, 00214AA2, 00214AA3, 00214AA4, 00214AA5, 00214AA6, 00214AA7, 00214AA9, 00214AAA, 00214AAB, 00214AAC, 00214AAD, 00214AAE, 00214AAF, 00214A99, 00214A9A, 00214A9B, 00214A9C, 00214A9D, 00214A9E, 00214A9F, 00210A77, 00210A90, 00210A92, 00210A93, 00210A66, 00210A67, 00210A9F, 000FCB6C, 0018042A, 00210B37, 00210B3A, 001D8D97, 002147F0, 002147F5, 002147E7, 000C2288, 000C2289, 000C228A, 000C2269, 000C2268, 000C226B, 000C226A, 002147E6, 000C226C, 000C226D, 000C226E, 002147D4, 00214800, 000C235D, 000C2361, 000C235E, 000C2360, 000C235F, 000C2357, 000C2374, 000C2367, 000C2369, 00214826, 002147EA, 002147EB, 002147EC, 002147E8, 002147E9, 001A58DE, 001A58DF, 001A58E0, 001A58E1, 001A58E4, 001A58E5, 001A58E6, 001A58E7, 001A58F0, 001A58F1, 001A58F2, 001A58F3, 002147EF, 002147EE, 002147ED, 002147D5, 002147D6, 002147CE, 002147BF, 002147C5, 002147C4, 001E33C1, 001E33C3, 001E33C2, 000F044A, 000C28BE, 00214760, 00214761, 00214762, 00214659, 00214660, 00214656, 00210B52, 00210B4B, 00214A6C, 00214A6B, 00214A6A, 00214A6D, 00214A6E, 00214712, 00214713, 00214770, 001DF29B, 001DF2A9, 001DF2A4, 000C2127, 00210B48, 001EB050, 002146CF, 00214677, 002146C3, 002146C5, 00210B47, 00214731, 001E33A0, 000C222F, 001E33C0, 002147B1, 000C223C, 000C223D, 000C223E, 001E33A9, 001E33B4, 001E33B7, 001E339D, 001E33C7, 000C2946, 000C282E, 00214818, 0021481A, 00214817, 00214814, 00214813, 00214816, 0021480D, 00214812, 00214811, 0021480E, 0021480F, 00214810, 00180423, 0021481D, 00210B30, 00210B2D
+  - VaultSignageTheme01_Damage Matswap 240304: 0019B7C2, 0019B7BC, 0019B7C1, 0019B7BD, 0019B7C4, 0019B7B1, 0019B7B5, 0019B7CB, 0019B7B4, 001A5DF7, 001A5DF8, 0019B7C9, 0019B7CA, 0019B7C8
+  - VaultLightTheme01_Damage 240309: 00180438, 00180439, 001E348E, 0018043A, 00180415, 00180414, 001DF28F, 001DF290, 001DF2A0, 001DF2AB, 001DF32B, 001E3490, 001E348F, 000C5053, 0018043D, 001E34C7, 001E3460, 00182C43, 00182C42, 00182C3F, 00182C40, 00182C3E, 00180454, 00180442, 0018043C, 0018043B, 001D8D68, 001D8D67, 00227553, 00227552, 001D8D80, 001D8D83, 001D8D3A, 00210A5E, 001D8D2C, 00180456, 00180443, 001D4FF3, 001D4FF5, 001D4FF7, 001D4FCA, 001D4FF8, 001D8D11, 001D8D12, 00182C19, 00182C1A, 001D8D17, 001D8D27, 00210A7D, 001D8D2A, 001D8DB6, 001D8DB8, 00182C1D, 00182C48, 00182C12, 00182C10, 00182C11, 00182C1F, 001D9C5D, 001D9C5E, 001D9C5F, 001D9C6D, 001D9C40, 0021466A, 00214668, 0021466C, 002146BB, 001DF290, 001DF294, 001DF295, 001DF2A1, 001DF2A0, 001DF28F, 001DF291, 001D9CEC, 001DF28B, 001DF28C, 001DF28D, 001DF28E, 0021466D, 001DF2AC, 001DF2E9, 001DF2E8, 001DF32A, 001DF32B, 001DF2CC, 001DF305, 00182C2B, 001DF34F, 001DF33D, 001DF351, 001E33C4, 00182C22, 001E33C6, 001E33BF, 001E3398, 00182C29, 001E33BE, 001E33BD, 001E33BC, 00180426, 00180425, 00180427, 00180424, 0018044E, 0018041F, 0018041E, 0018041D, 00180420, 00182C3D
+  - VaultDamageTheme16_DamageLavatory 240303: 001A8BA8, 07038FB1
+  - ConBigDirtySwap01 1D5F65: 000C2192
+  - Adjust positioning of 180424, C0E81, 18043D, 18049E, 180487, FCBC7, 214659, 214676, 214677, 214678, 214686, 2146C1, 2146D5, 2146D6, 2146D7, 2146D8, 2146DC, 2146DF, C282E, C2823, C29A6, C29A7 to fix various z-fighting and positing issues. 180395's placement needs verified.
+  - Delete C299B, C21CB, C2316
+  - Dedup 214804, 1E34D9, 1E33E8, 1AE4C5, 1AB90A, 19B809, 19B7EE
+- ~~\[U32442\] (Vault75): Rip 1AAFCB out of the wall and out of the way nearby on top of a pile of trash.~~
+- ~~\[U32443\] (Vault75): Add Painting_CanvasSwapToPainting24 texswap to 1A5DEB~~
+- \[PRP\] (Financial28): Move 1FE506, 1FE508, 1F34F5, 1FE4F6 to fix z-fighting
+- \[PRP\] (Financial28): Remove a ClutterGenSlimeA that we presume was originally supposed to be attached to a desk. 2259F1
+- \[PRP\] (SouthBostonPoliceDepartment01): Adjust 225E0E to fix z-fighting
+- \[PRP\] (3, 14, CW): Delete a duplicate PrivetHedgePostWar02 2474E2 that was noticeably z-fighting
+- \[PRP\] (-21, -12, CW): Fix 232379's gnarly z-fighting.
+- \[PRP\] (AndrewStation01): Ground both 1B265B and 1B265C
+- \[PRP\] (5, -10, CW): Adjust 22CB38 upwards to fix z-fighting
+- \[PRP\] (-22, -11, CW): 
+  - Remove a wall stain, 1E806A, that is clearly hanging down. A shit job. 
+  - Also adjust placement of 231602 to fix z-fighting while we are here. 
+  - Swap ref base on C76BD for E6316.
+  - Remove the pointless C7634 as well while we are here.
+  - Lower a floating set of bricks. C77A8.
+  - Shift a Buttercup poster back a bit to give the illusion that it's under the grime texture nearby. 1E8070
+- \[Import\] Import updated replacement meshes that had occlusion stripped from Flicker Fixer with versions done by Exoclyps done for the Storywealth Collection. Thanks!
+- \[PRP\] (CorvegaAssemblyPlantExt01 to 06): There's way too many records to list here, but explicitly purge any NULL linkrefs from non-precombined references in these exterior cells. This is preventing them from being added to the lists, and this is clearly wrong. There might be straggler refs outside of the named blocks, but I'm not touching them without a script to search for them. Also, please note that MultirefLOD is a reflink that the game ignores for previsibining so it's fine to leave it in place.
+  - Counts: Ext01 37, Ext02 17, Ext03 33, Ext04 81, Ext05 28, Ext06 14
+- \[PRP\] (3, 11, CW): UDR duplicate HedgeRow03 1E4B6B and also remove null XLKR from 981A7
+- \[PRP\] (6, -26, CW): UDR 14A7F4 and kill NULL XLKR in 14A7F3
+- \[PRP\] (5, -27, CW): UDR 14A7C7 and kill NULL XLKR in 14A7C6
+- \[PRP\] (6, -1, CW): 1BA36D to 1BA373, kill NULL XLKR extra refs that shouldn't be there.
+- \[PRP\] (7, -2, CW): 1D985E another NULL XLKR intended for multireflod
+- \[PRP\] (6, -2, CW): 1BA36B, 1BA374, 1D985F see above
+- \[PRP\] (5, -2, CW): 1D9872, 1D9873, 1D9874 see above
+- \[PRP\] (7, -3, CW): 1D9858, 1D985C see above
+- \[PRP\] (6, -3, CW): Too many to list, see above
+- \[PRP\] (7, -4, CW): Same as previous line.
+- \[PRP\] (6, -4, CW): That's a lot of nulls.
+- \[PRP\] (-9, 9, CW): E51FE
+- \[PRP\] (-10, 9, CW): E51FD
+- \[PRP\] (-3, -13, CW): UDR 15AD6E and kill NULL XLKR in 15AD6D
+- \[PRP\] (-5, -7, CW): 22DA61 clear null LOD XLKR ref
+- \[PRP\] (1, 15, FH): 303F748 and 303F747, UDR and NULL XLKR song and dance
+- \[PRP\] (0, 0, DC): Remove EnableParent on 1347.
+- \[PRP\] (0, 2, CW): 1BF97E and 1BF97D needs pulled forward to fix a building hole.
+- \[PRP\] (-16, 10, CW): 893D3 got moved to the plateau nearby to stop the branches from outright floating.
+- ~~\[U32472\] (0, 4, CW): A9416 and A9411 has a rather visible seam.~~
+- \[PRP\] (3, 10, CW): Dedup 98F06, create and apply texswap to 981EC, ~~copied textures are the same as base game intentionally.~~ Texture replacement artists should look at and create replacements that fit the style with the filename set of PaintedWoodWhiteDirty01 in the Textures/SetDressing/Fences directory. The versions in the game intro are untouched. pointythunder654 has contributed a set of textures to fix this issue for our side.
+- ~~\[U32477\] (3, -6, CW): Plug up the hole nearest B7281 to prevent open world syndrome when the barricade is gone.~~
+- \[PRP\] (Vault75): Kill 1802D3 and 18043E
+- \[U24630\] (-24, -24, CW): Fix base reference for 18f40c to be a HitFloorSolidFull01 instead of HitFloorSolidMid01 as per bug. Already fixed in UF4OP, we're just fixing the problem at our level.
+- \[U29291\] (0, 7, NW): Nudge 0601DA78 to hopefully help fix a previs break, might require a collisionmarker.
+- \[U28513\] Migrate bug contents to PPF.
+- \[PRP, U28904\] (CambridgeMassChemical01): Shift position of C983C to fix bad placement. Create new material swap and apply to C980B and C98E6 to fix blue bricks that should not be there. Add 1E819A XLRT to 1C7EE0
+- ~~\[PRP, U31719\] (-8, 0, CW): 16002F and 16002A missing side of SCOL mesh \(sidewalk\), break them and delete the relevant sidewalk pieces. One left side isn't even visible, and the two right side ones need some welding or model work to make them useable without glaring visual issues.~~
+
+59
+
+- ~~\[U32372\] (-24, -1, CW): Add a brand new pallet to cover up a nasty looking landscape crack at 1.5x size. PRP ID 0800002B (Please note, records were compacted, and new records listed before this point are probably wrong.)~~
+- \[PRP\] (6, 13, FH): Reported visibility break in the area, fix pending.
+- \[U32369\] (0, 9, NW): Move 06047DB1 AND 0604D493 so that they aren't floating. Upstreamable.
+- \[PRP\] (Financial28): Slightly shift 13C9A8 to make umbra happy. This desk was previously moved by UF4OP. Reminder to self to upstream if confirmed working.
+- \[PRP\] (DmndSecurity01): Prune new records that were taken in from one of the bugfixes that aren't needed with our work. 0800002B to 0800002E
+- \[PRP\] (DLC04GZVaultTec01): Slightly shift 060277ff to prevent railing smashing. I'd also do something about the railing, but that would require model work.
+- \[PRP\] (-18, 19, CW): Reposition 157502 to stop z-fighting.
+- \[PRP\] (BeaconHillPub): Fix the walls near the Employees Only area. 16C51A, 16C526, 16C6A2, 219DAB, 219DAC, 219DAD, 219DB1 to 219DB9, 219DBA, 219DD3 were touched including objects attached to the wall.
+- \[PRP\] (-5, -6, CW): Fix misalignment of 39B74
+- \[PRP\] (-5, -5, CW): Tentative 2CAFD move to fix a previs hole (there's supposed to be a window near a trash pile), 
+- \[PRP\] (WestonWaterTreatment01): Fix z-fighting by changing 1ED0C0 position.
+- \[PRP\] (16, 12, CW): Lower 1B551C, 1B551E and 1B551F to match the changes to 1B5509 in an earlier revision.
+- \[PRP\] (DmndSecurity01): Optimize Feng Shui by shifting 126DA1. I cannot be held responsible if Tom Nook comes after my ass about pipe damage with relation to the table's position.
+- \[PRP\] (Vault81Entry): Shift position of A9B99 and A9B9A to not be clobbered by the stairs nearby.
+- \[PRP\] (Vault81Secret): Shift position of 19E885 so it's not into the fucking wall.
+- \[PRP\] (Vault81): 19DA74 and 19DA75 got shoved closer to the wall. The folding chairs made no sense standing up like that.
+- \[PRP\] (DLC01FortHagenSatelliteArray01): Round up all values for all seven Crates that were previously touched in PPF to fix the same holes that have been plaguing previs since forever.
+- \[PRP\] (Vault75): ~~Fix 1A8BA8 Z pos in the same way as the UF4OP replacement to see if it finally fixes the previs hole. That's probably what's really going on here. If so, UF4OP's fix should be UDR'd. As of current dev, 07038FB1 is intentionally positioned upwards. Review this after 0.59's release to see if I'm right or not.~~ Reported fixed by Glitchfinder. Will mark UF4OP's fix as UDR in next build.
+- ~~\[PRP\] Include ALL esm UDRs that you normally get after cleaning the DLC .esm files to remove the DLC Cleaning requirement. The sheer number will not be listed here for brevity, though one could easily look them up themselves against an unclean esm install.~~ Reverted in minimal testing, moved to it's own plugin.
+- \[PRP\] (-4, 2, CW): Fix 30FEF positioning to correct z-fighting
+- \[PRP\] (ListeningPostBravo01): Slightly nudge 189557 and 18958E to hopefully fix "invisible world" syndrome for a certain angle. (Not saved to PPF)
+- \[PRP\] (-4, 4, CW): Change 17E458 from ShrubLarge05 to ShrubMedium03 and slightly fix positioning to stop some floating shrubbery.
+- \[PRP\] (0, -1, CW): Dedup 00175FE2
+- \[PRP\] (0, -2, CW): Dedup 0016F1B3
+- \[PRP\] (0, -4, CW): Dedup 001AEA4A, 001AEA4B
+- \[PRP\] (0, -5, CW): Dedup 00175238, 000B8FF5, 0016D899
+- \[PRP\] (0, -6, CW): Dedup 001BEE32, 001767A1
+- \[PRP\] (0, -7, CW): Dedup 000D5665, 000F4628
+- \[PRP\] (0, -8, CW): Dedup 0023D52A, 00188230, 0018822F, 0018822E, 0018822D, 0018822C
+- \[PRP\] (13, -25, CW): Dedup 001F29CC
+- \[PRP\] (13, -18, CW): Dedup 0004A26C, 0004A268
+- \[PRP\] (9, -18, CW): Dedup 0009F16F, 00115D84, 00115D85, 00115E74
+- \[PRP\] (13, -19, CW): Dedup 00107DF7, 0005E8E1
+- \[PRP\] (15, -21, CW): Dedup 001EEACB, 00203852, 00203853, 00203854, 00203855, 00203856, 00203857, 00203858
+- \[PRP\] (14, -21, CW): Dedup 001CB3E6, 00203941
+- \[PRP\] (9, -22, CW): Dedup 000B4883, 000B4884, 000B4885
+- \[PRP\] (13, -24, CW): Dedup 001E2037
+- \[PRP\] (12, -24, CW): Dedup 001F2688
+- \[PRP\] (9, -9, CW): Dedup 00198941
+- \[PRP\] (8, -9, CW): Dedup 00171BF1, 0006601A, 0006603E
+- \[PRP\] (8, -11, CW): Dedup 001B2C94
+- \[PRP\] (15, -12, CW): Dedup 001E0C73
+- \[PRP\] (8, -12, CW): Dedup 0017890F
+- \[PRP\] (12, -1, CW): Dedup 000D6FFF, 000D6FD3, 001BD508, 001BD509, 001BD50A, 001BD50B
+- \[PRP\] (11, -1, CW): Dedup 001D4D39, 001D4CF1, 001D4CF2, 001BD4E1, 001BD4EB, 001BD4EC, 001BD4ED, 001BD4EE, 001BD4EF, 001BD4F0
+-- Slightly shift 001D4D39 as well.
+- \[PRP\] (8, -1, CW): Dedup 001864D7
+- \[PRP\] (12, -2, CW): Dedup 001907E3, 001ACBF4, 001BD50C, 001BD50D, 001BD50E, 001BD50F, 001BD510, 001BD511, 001BD512, 001BD513, 001BD514, 001BD522, 001BD523, 001BD524, 001BD525, 001BD526
+- \[PRP\] (11, -2, CW): Dedup 001907E7, 001BD4DF, 001BD4E0, 001BD4E2, 001BD4E3
+- \[PRP\] (8, -2, CW): Dedup 001F23D4, 001E8806
+- \[PRP\] (13, -3, CW): Dedup 002457B0
+- \[PRP\] (12, -3, CW): Dedup 001907E9, 001907EA, 001BBCAC, 001BBCAD, 001BE548, 001BE549, 002456C3, 00247A6E, 00247A6F, 00247A70, ~~00247A71~~, 00247A72, 00247A73, 00247A74, 00247A75, 00247A76, 00247A77, 00247A78, 00247A7A, 00247A7B, 00247A7C, 00247A7D, 00247A7E
+- \[PRP\] (11, -3, CW): Dedup 002259D0, 002259D1
+- \[PRP\] (8, -3, CW): Dedup 001F23E5, 001C2362, 001E6F9C
+- \[PRP\] (8, -4, CW): Dedup 001F2498, 001EEEC2, 001C2336, 001C22E1
+- \[PRP\] (10, -5, CW): Dedup 001D43CE
+- \[PRP\] (8, -5, CW): Dedup 001F9785
+- \[PRP\] (9, -3, CW): Dedup 001B9EC6, 001B9EC7, 001B9EC8
+- \[PRP\] (19, -17, CW): Dedup 001ECDF7
+- \[PRP\] (18, -18, CW): Dedup 001E410A
+- \[PRP\] (16, -18, CW): Dedup 0016E686
+- \[PRP\] (19, -22, CW): Dedup 001EA0C9
+- \[PRP\] (22, -24, CW): Dedup 001ECE2D
+- \[PRP\] (23, -14, CW): Dedup 001E0E2A
+- \[PRP\] (18, -14, CW): Dedup 0019F76C
+- \[PRP\] (21, -1, CW): Dedup 0016110D
+- \[PRP\] (20, -4, CW): Dedup 001E1159
+- \[PRP\] (18, -5, CW): Dedup 001DE92F
+- \[PRP\] (25, -10, CW): Dedup 00166CFA, 00166CE7, 00166CE6, 00166CE5, 00166CE4, 00166CE3
+- \[PRP\] (25, -11, CW): Dedup 00163DEC
+- \[PRP\] (24, -11, CW): Dedup 00166D63, 00166D5B, 00166D4E
+- \[PRP\] (4, 3, NW): Convert 06014677 to it's non-destructive version, as per Glitchfinder. Apparently the destructive version of the sign has no destructive data.
+- \[PRP\] (-33, -20, CW): Dedup 0017DDB2
+- \[PRP\] (-17, 4, CW): Dedup 000E4CF5
+- \[PRP\] (-21, 9, CW): Dedup 001BE760
+- \[PRP\] (-25, -1, CW): Dedup 010018F2
+- \[PRP\] (21, 30, CW): Dedup 03032AD8
+- \[PRP\] (-6, 1, FH): Dedup 0305D3E1
+- \[PRP\] (0, -11, FH): Dedup 0304E64A
+- \[PRP\] (7, 8, FH): Dedup 0303795C
+- \[PRP\] (7, 7, FH): Dedup 030217E9
+- \[PRP\] (3, 6, FH): Dedup 03029CBF
+- \[PRP\] (3, 5, FH): Dedup 0301972D
+- \[PRP\] (2, 4, FH): Dedup 03028DF3, 03028DF4
+- \[PRP\] (2, 0, FH): Dedup 0302DEF4
+- \[PRP\] (1, 7, FH): Dedup 0302EE28
+- \[PRP\] (0, 0, FH): Dedup 0302ACA2, 0302ACA3, 0302ACA4, 0302ACA5, 0302ACA7
+- \[PRP\] (5, 15, FH): Dedup 0303F51A, 0303F53A
+- \[PRP\] (7, 9, FH): Dedup 03021190, 03032528, 03032529
+- \[PRP\] (7, 8, FH): Dedup 0302E478, 0302E479, 0302E47A, 03031456
+- \[PRP\] (6, 13, FH): Dedup 0303F2F8, 0303F2F9
+- \[PRP\] (6, 10, FH): Dedup 030363C9
+- \[PRP\] (4, 12, FH): Dedup 0303D6B7
+- \[PRP\] (4, 10, FH): Dedup 03036531
+- \[PRP\] (3, 8, FH): Dedup 03010454
+- \[PRP\] (2, 14, FH): Dedup 0303F68A
+- \[PRP\] (2, 8, FH): Dedup 03031A4E
+- \[PRP\] (1, 15, FH): Dedup 0303F6D2, 0303F6DF
+- \[PRP\] (0, 12, FH): Dedup 0302EB64
+- \[PRP\] (3, 15, FH): Dedup 0303F5ED
+- \[PRP\] (14, 6, FH): Dedup 0304FEAD
+- \[PRP\] (15, 1, FH): Dedup 030035F0
+- \[PRP\] (14, 4, FH): Dedup 03011BB8
+- \[PRP\] (13, 7, FH): Dedup 0303DE23, 0303DE28
+- \[PRP\] (13, 5, FH): Dedup 03023294
+- \[PRP\] (12, 6, FH): Dedup 03023120
+- \[PRP\] (12, 0, FH): Dedup 030253B3
+- \[PRP\] (11, 7, FH): Dedup 03004FA2, 03044F25
+- \[PRP\] (13, 10, FH): Dedup 03012855
+- \[PRP\] (13, 8, FH): Dedup 0300350D, 0300350E, 03003535, 03003536, 03003538, 0300353A, 0300353B, 0303DDEA, 0303DE26, 03056373, 03056374, 03056375, 03056376, 03056377, 0305637A, 0305639B, 0305639D
+- \[PRP\] (11, 11, FH): Dedup 03015D9D
+- \[PRP\] (10, 8, FH): Dedup 03022C78, 03022C7A
+- \[PRP\] (16, 0, FH): Dedup 030254CB, 030047F1
+-- Second reference has no geometry. Punted to UF4OP as U32356
+- \[PRP\] (7, -12, FH): Dedup 0300DD87
+- \[PRP\] (7, -13, FH): Dedup 0300CB4A, 0303E5A2
+- \[PRP\] (7, -14, FH): Dedup 0300C42C
+- \[PRP\] (4, -13, FH): Dedup 0303A010
+- \[PRP\] (1, -11, FH): Dedup 0302C51B
+- \[PRP\] (0, -12, FH): Dedup 0303CE6A
+- \[PRP\] (4, -12, FH): Dedup 0304FFAF
+- \[PRP\] (2, -13, FH): Dedup 0303936C
+- \[PRP\] (2, -14, FH): Dedup 0300F438
+- \[PRP\] (0, -9, FH): Dedup 03025B6F
+- \[PRP\] (5, -2, FH): Dedup 0303EF78
+- \[PRP\] (5, -8, FH): Dedup 0300A3A6, 03030CA9
+- \[PRP\] (2, -8, FH): Dedup 0301C59B
+- \[PRP\] (7, -4, FH): Dedup 0302CE86
+- \[PRP\] (7, -5, FH): Dedup 0302DA72, 0302DA73, 030345BA
+- \[PRP\] (7, -7, FH): Dedup 0302CEBB, 03031B4E
+- \[PRP\] (6, -4, FH): Dedup 0302CE8C
+- \[PRP\] (6, -5, FH): Dedup 0302D011
+- \[PRP\] (6, -6, FH): Dedup 03018924, 03018B73
+- \[PRP\] (5, -4, FH): Dedup 03014FB3
+- \[PRP\] (5, -5, FH): Dedup 03014F40
+- \[PRP\] (5, -6, FH): Dedup 0302CDB9, 0302CDC3, 0302D0C2
+- \[PRP\] (5, -7, FH): Dedup 03018933
+- \[PRP\] (4, -5, FH): Dedup 03018690
+- \[PRP\] (4, -6, FH): Dedup 03018741
+- \[PRP\] (4, -7, FH): Dedup 030077C0
+- \[PRP\] (3, -4, FH): Dedup 0303308B
+- \[PRP\] (3, -5, FH): Dedup 030150B5, 030150BE, 0304FFA3
+- \[PRP\] (3, -6, FH): Dedup 03015098, 03018707
+- \[PRP\] (2, -5, FH): Dedup 030076E7, 03014C99, 03018FEF, 0301901A, 0304FFA4
+- \[PRP\] (1, -6, FH): Dedup 03025E03
+- \[PRP\] (0, -3, FH): Dedup 0302DBD6
+- \[PRP\] (0, -5, FH): Dedup 03014B0D
+- \[PRP\] (0, -6, FH): Dedup 03025DD1
+- \[PRP\] (0, -7, FH): Dedup 03025DCB
+- \[PRP\] (0, -8, FH): Dedup 030332A8
+- \[PRP\] (10, -9, FH): Dedup 0305013B
+- \[PRP\] (9, -9, FH): Dedup 03050115
+- \[PRP\] (9, -10, FH): Dedup 0300B0DA
+- \[PRP\] (9, -11, FH): Dedup 0300A430
+- \[PRP\] (15, -2, FH): Dedup 03005E3F
+- \[PRP\] (13, -1, FH): Dedup 03005FC7
+- \[PRP\] (13, -3, FH): Dedup 030544CB
+- \[PRP\] (12, -3, FH): Dedup 03013ABD, 030146DA, 030544C5
+- \[PRP\] (11, -1, FH): Dedup 03007150
+- \[PRP\] (11, -2, FH): Dedup 03005FCA
+- \[PRP\] (10, -6, FH): Dedup 0301397E, 03013985, 03033714
+- \[PRP\] (10, -7, FH): Dedup 03034C70
+- \[PRP\] (9, -7, FH): Dedup 0300309E, 0300309F
+- \[PRP\] (8, -7, FH): Dedup 03034536
+- \[PRP\] (12, -7, FH): Dedup 03031E31
+- \[PRP\] (16, -3, FH): Dedup 0303F7D6, 0303F7EC
+- \[PRP\] (-9, 2, FH): Dedup 03030004, 03030005, 03030006, 03030007, 03030008, 03030009, 0303000A, 0303000B, 0303000C, 0303000D, 0303000E, 0303000F, 03030010, 03030011, 03030012, 03030013, 03030014, 03030015, 03030016, 03030017, 03030018, 03030019, 0303001A, 0303001B, 0303001C, 0303001D, 0303001E, 0303001F, 03030020, 03030021, 03030022, 03030023, 03030024, 03030025, 03030026, 03030027
+- \[PRP\] (-10, 4, FH): Dedup 0301328C, 0301331F
+- \[PRP\] (-10, 2, FH): Dedup 03010C88
+- \[PRP\] (-10, 8, FH): Dedup 0301842F
+- \[PRP\] (-1, 2, FH): Dedup 03024506
+- \[PRP\] (-2, 6, FH): Dedup 0302376A
+- \[PRP\] (-2, 5, FH): Dedup 03009D4D, 030238CA, 030238D3
+- \[PRP\] (-2, 3, FH): Dedup 03023D60
+- \[PRP\] (-2, 2, FH): Dedup 03007BCB
+- \[PRP\] (-2, 1, FH): Dedup 0303C9BB
+- \[PRP\] (-3, 1, FH): Dedup 030382E4
+- \[PRP\] (-3, 0, FH): Dedup 0300FA5D
+- \[PRP\] (-5, 6, FH): Dedup 03022EE8
+- \[PRP\] (-5, 5, FH): Dedup 03006660, 03006662
+- \[PRP\] (-5, 2, FH): Dedup 03022D64, 03022D65, 03022DDB, 03022DEE, 03035A46
+- \[PRP\] (-5, 1, FH): Dedup 03035A9B
+- \[PRP\] (-6, 3, FH): Dedup 030064F8
+- \[PRP\] (-6, 2, FH): Dedup 03008FFA, 03009003
+- \[PRP\] (-6, 1, FH): Dedup 03035AFF, 030377B9
+- \[PRP\] (-6, 0, FH): Dedup 0300ACA9
+- \[PRP\] (-7, 2, FH): Dedup 030061C3
+- \[PRP\] (-7, 0, FH): Dedup 0300A23B, 0300D2ED, 0300D3C7
+- \[PRP\] (-8, 6, FH): Dedup 03003C72, 03003CF9
+- \[PRP\] (-8, 4, FH): Dedup 030040C9
+- \[PRP\] (-8, 3, FH): Dedup 030040CF
+- \[PRP\] (-8, 2, FH): Dedup 0300612C
+- \[PRP\] (-2, 14, FH): Dedup 0302D6D8
+- \[PRP\] (-3, 8, FH): Dedup 03007A83, 0301A73E
+- \[PRP\] (-4, 12, FH): Dedup 03028920, 03028990
+- \[PRP\] (-6, 9, FH): Dedup 0302BDD3
+- \[PRP\] (-9, -9, FH): Dedup 0303FE44
+- \[PRP\] (-11, -10, FH): Dedup 0304F55B
+- \[PRP\] (-13, -11, FH): Dedup 03057070
+- \[PRP\] (-9, -8, FH): Dedup 03024623
+- \[PRP\] (-10, -8, FH): Dedup 0302474C
+- \[PRP\] (-11, -6, FH): Dedup 03035999
+- \[PRP\] (-2, -16, FH): Dedup 03014546
+- \[PRP\] (-1, -16, FH): Dedup 0301EBBA
+- \[PRP\] (-1, -9, FH): Dedup 03025B46
+- \[PRP\] (-1, -12, FH): Dedup 0302D430, 030406A2, 030406BA
+- \[PRP\] (-2, -12, FH): Dedup 0301AF5A
+- \[PRP\] (-4, -9, FH): Dedup 0301484E
+- \[PRP\] (-5, -9, FH): Dedup 03012D7C
+- \[PRP\] (-5, -13, FH): Dedup 03011985
+- \[PRP\] (-5, -14, FH): Dedup 0304FC5A, 0304FC5B
+- \[PRP\] (-7, -15, FH): Dedup 03013F37
+- \[PRP\] (-2, -7, FH): Dedup 03011E94, 03012AD7, 0302AF24, 0302AF25
+- \[PRP\] (-3, -6, FH): Dedup 03012164, 03012165, 03012166, 030121A1, 030121C0, 030121C1, 030292AD, 030292E0
+- \[PRP\] (-1, -1, FH): Dedup 0300FB72
+- \[PRP\] (-1, -2, FH): Dedup 0303CAF5, 0303CBB7
+- \[PRP\] (-1, -7, FH): Dedup 03010E11, 0302AF55
+- \[PRP\] (-2, -2, FH): Dedup 0303CA5B
+- \[PRP\] (-3, -4, FH): Dedup 0302A933
+- \[PRP\] (-4, -2, FH): Dedup 0304E28A
+- \[PRP\] (-4, -3, FH): Dedup 030100F6
+- \[PRP\] (-4, -4, FH): Dedup 0300E505
+- \[PRP\] (-4, -5, FH): Dedup 03013D9B, 030379AE
+- \[PRP\] (-4, -6, FH): Dedup 03012880
+- \[PRP\] (-4, -8, FH): Dedup 03012356
+- \[PRP\] (-5, -4, FH): Dedup 03026932
+- \[PRP\] (-5, -5, FH): Dedup 03013CFD
+- \[PRP\] (-5, -7, FH): Dedup 03012278
+- \[PRP\] (-5, -8, FH): Dedup 03012D7E, 03012D81
+- \[PRP\] (-6, -2, FH): Dedup 0300E657
+- \[PRP\] (-6, -3, FH): Dedup 03037437
+- \[PRP\] (-6, -5, FH): Dedup 03026869
+- \[PRP\] (-6, -6, FH): Dedup 03012BF2, 03012BF4, 03012C0C
+- \[PRP\] (-6, -7, FH): Dedup 03028F5C, 03028F9C
+- \[PRP\] (-7, -1, FH): Dedup 0300D3E4
+- \[PRP\] (-7, -4, FH): Dedup 03026768
+- \[PRP\] (-7, -6, FH): Dedup 03026A08, 03027DB8
+- \[PRP\] (-7, -7, FH): Dedup 030135C1, 03013C49
+- \[PRP\] (-8, -2, FH): Dedup 030370E5
+- \[PRP\] (-8, -4, FH): Dedup 030266BA, 030266C6
+- \[PRP\] (-8, -6, FH): Dedup 0301149B
+- \[PRP\] (-8, -7, FH): Dedup 03010ABB, 0301131C
+- \[PRP\] (-8, -8, FH): Dedup 03013704, 03027D3D, 03027D90
+- \[PRP\] (1, 0, FHVR): Dedup 03043E6A, 03054B03
+- \[PRP\] (0, 0, FHVR): Dedup 0302F01A, 0302F51F
+- \[PRP\] (1, 1, FHVR): Dedup 03045566, 03045567, 03045568
+- \[PRP\] (0, -1, FHVR): Dedup 0301D94C, 0301D94D, 0301D94E, 0301DA53, 0301DA55, 0301DA81, 0301DA83, 0301DA92, 0301DA94, 0301DAA2, 0301DAB2, 0301DAB4, 0302F533, 03043CF9, 03054E1A, 03054E8B, 03054E8D, 03054E9D, 03054EAB, 03054EAD, 03054EBC, 03054EBE, 03054EEA, 03054EEC
+- \[PRP\] (1, -1, FHVR): Dedup 03043CD1, 03043CD2, 03043CD3, 03043CD4, 03043CD5, 03054C85, 03054C86, 03054C87, 03054C88, 03054C89, 0305720C
+- \[PRP\] (-1, 1, FHVR): Dedup 03027B84, 030551B8
+- \[PRP\] (-1, -2, FHVR): Dedup 0304E015
+- \[PRP\] (-26, 6, CW): Dedup 0600B1C1, 0600B1BF
+- \[PRP\] (-27, 6, CW): Dedup 0600A7BA
+- \[PRP\] (-28, 6, CW): Dedup 0600B1B8
+- \[PRP\] (0, -2, NW): Dedup 0604130B
+- \[PRP\] (2, 3, NW): Dedup 0603F79A
+- \[PRP\] (-5, -1, NW): Dedup 06031906
+- \[PRP\] (1, -3, NW): Dedup 060284C2
+- \[PRP\] (1, 4, NW): Dedup 060283EE
+- \[PRP\] (-4, -6, NW): Dedup 06028332, 06028333, 06028334, 06028335, 06028336
+- \[PRP\] (-1, -4, NW): Dedup 060281FE, 060281FF, 06028200, 06028201, 06028202, 06028203, 06028204
+-- The last four entries will affect textures in the area, as the duplicate entries were application of texture sets.
+- \[PRP\] (7, 2, NW): Dedup 06051EA9
+- \[PRP\] (6, 7, NW): Dedup 060181EF
+- \[PRP\] (6, 5, NW): Dedup 0601AAB4
+- \[PRP\] (6, 4, NW): Dedup 0601814A
+- \[PRP\] (5, 4, NW): Dedup 06015B48
+- \[PRP\] (3, 6, NW): Dedup 06047AEC
+- \[PRP\] (3, 5, NW): Dedup 06021FDD, 06021FDE, 06021FDF, 06021FE0
+- \[PRP\] (3, 4, NW): Dedup 0601913B, 0601913C, 06021FDC, 06021FE1, 06021FE2, 06021FE3
+- \[PRP\] (3, 3, NW): Dedup 0602A7D2
+- \[PRP\] (2, 6, NW): Dedup 06047B34
+- \[PRP\] (2, 5, NW): Dedup 0604A1A4
+- \[PRP\] (2, 1, NW): Dedup 0604981E
+- \[PRP\] (2, 0, NW): Dedup 0603047D
+- \[PRP\] (1, 6, NW): Dedup 06048DD1
+- \[PRP\] (1, 4, NW): Dedup 0602151F, 06021529
+- \[PRP\] (0, 4, NW): Dedup 06015670
+- \[PRP\] (0, 3, NW): Dedup 06015657
+- \[PRP\] (0, 2, NW): Dedup 06017EB6
+- \[PRP\] (0, 1, NW): Dedup 0605432C
+- \[PRP\] (PrewarVault111): Adapt the Vault 111 Floor Guide Fix (https://www.nexusmods.com/fallout4/mods/28167), except actually fix the problem instead of overlaying another version of the floor guide on top. CA5CF, CA5E9, CA67C, CA5E8
+- \[U32352\] (GeneralAtomicsFactory01): ~~Tag doors 999E2 and 999E4 Inaccessible to prevent a "into the void" type situation.~~ Also move A5420 to make it easier to interact with (conflict with grass occlusion). 213240, 213242, 213244, 213247, 213241, 2133E0, 21345E, 213457 need adjusted for previs float point bug prevention. Tune 2134D8, 2134DF, 213389, 19C80A, 10844B to stop z-fighting. Also fix 99C19 z pos.
+- \[PRP\] (7, 15, NW): Dedup 0603E9C1
+- \[PRP\] (7, 13, NW): Dedup 060269B5
+- \[PRP\] (7, 11, NW): Dedup 06025E68
+- \[PRP\] (3, 8, NW): Dedup 0601C361, 0601C3A4, 0601C3B9
+- \[PRP\] (2, 11, NW): Dedup 06029936
+- \[PRP\] (2, 9, NW): Dedup 0601DB73
+- \[PRP\] (2, 8, NW): Dedup 0602A34E
+- \[PRP\] (1, 13, NW): Dedup 0603DDFB
+- \[PRP\] (1, 8, NW): Dedup 06047C2B
+- \[PRP\] (0, 9, NW): Dedup 0602B42D, 06030146, 06030156, 06030157
+- \[PRP\] (0, 8, NW): Dedup 06016881, 06016882, 06016883, 06016990, 06016991, 06016992, 06016993, 06016994, 06016996, 06016997, 0601699B, 0601699C, 060169A0, 060169A1, 060169A8, 060169A9, 060169AA, 060169AC, 060169AD, 060169AE, 060169AF, 060169B0, 060169B1, 060169B2, 060169B3, 060169B4, 060169B5, 060169B6, 060169B7, 060169B8, 060169B9, 060169BA, 060169BB, 060169BC, 060169BF, 060169C0, 060169C2, 060169C3, 060169C4, 060169C5, 060169C6, 060169C7, 060169C8, 060169C9, 060169CA, 060169CB, 060169CC, 060169CD, 060169CE, 060169D0, 060169D2, 060169D3, 060169D4, 060169D5, 060169D6, 060169D7, 060169DC, 060169E5, 060169E6, 060169E7, 060169E8, 060169E9, 060169EA, 060169EB, 060169EC, 060169F1, 060169F2, 060169F3, 060169FC, 060169FD, 060169FE, 060169FF, 06016A00, 06016A01, 06016A02, 06016A03, 06016A04, 06016A05, 06016A06, 06016A07, 06016A08, 06016A09, 06016A0A, 06016A0B, 06016A0C, 06016A0D, 06016A0E, 06016A0F, 06016A10, 06016A11, 06016A12, 06016A13, 06016A14, 06016A17, 06016A18, 06016A19
+- \[PRP\] (6, 17, NW): Dedup 0603F15E
+- \[PRP\] (5, 16, NW): Dedup 0603EA31
+- \[PRP\] (4, 18, NW): Dedup 0603F160
+- \[PRP\] (12, 6, NW): Dedup 06039CA3, 06039CAD
+- \[PRP\] (9, 7, NW): Dedup 0602022D, 0602022E
+- \[PRP\] (9, 5, NW): Dedup 06011B83
+- \[PRP\] (8, 3, NW): Dedup 0600F9C3
+- \[PRP\] (9, 12, NW): Dedup 06010574
+- \[PRP\] (11, 16, NW): Dedup 0603E84B
+- \[PRP\] (17, 1, NW): Dedup 0604CAE1
+- \[PRP\] (1, -9, NW): Dedup 0600B633
+- \[PRP\] (0, -9, NW): Dedup 0600B794
+- \[PRP\] (7, -7, NW): Dedup 0603E6B1
+- \[PRP\] (6, -1, NW): Dedup 0605377A
+- \[PRP\] (4, -2, NW): Dedup 060163CA
+- \[PRP\] (3, -1, NW): Dedup 060537F1
+- \[PRP\] (2, -2, NW): Dedup 0602683F, 06028606, 06028607, 06028609, 0602860A, 0602860B, 0602860C, 0602860D, 0602860E
+- \[PRP\] (2, -3, NW): Dedup 06028401, 06028402
+- \[PRP\] (2, -4, NW): Dedup 060267B4, 06028615
+- \[PRP\] (2, -6, NW): Dedup 0601471D
+- \[PRP\] (1, -2, NW): Dedup 06014753, 0602852A, 0602852D, 0602852E, 0602853F, 06028541, 06028542, 06028543, 06028545, 060285FA, 06028605
+- \[PRP\] (1, -3, NW): Dedup 0602845D, 0602845E, 0602845F, 06028460, 06028461, 06028462, 06028463, 060284B9, 060284BA, 060284BB, 060284BC, 060284BD, 060284BE, 060284BF, 060284C3, 060284C4, 060284C5, 060284D9, 060284DA, 060284DB, 060284DE, 060284E3, 060284E5, 060284EF, 060284F0
+- \[PRP\] (1, -4, NW): Dedup 060283F6, 060283F7
+- \[PRP\] (1, -7, NW): Dedup 060161FE
+- \[PRP\] (0, -3, NW): Dedup 060403E4
+- \[PRP\] (0, -4, NW): Dedup 0603FB50, 0603FBAF, 06041A7F, 060428EC, 060428F9, 06053ACE, 06055C23, 060558F4
+- \[PRP\] (0, -5, NW): Dedup 060222C7, 06041D53, 06041D64
+- \[PRP\] (0, -6, NW): Dedup 06023850, 06041B5A, 06041B83
+- \[PRP\] (13, -2, NW): Dedup 0604CADE
+- \[PRP\] (-18, 0, NW): Dedup 060387FE
+- \[PRP\] (-12, 5, NW): Dedup 0603C2C9
+- \[PRP\] (-12, 1, NW): Dedup 0601A042
+- \[PRP\] (-13, 7, NW): Dedup 0603B993
+- \[PRP\] (-13, 6, NW): Dedup 060373BF
+- \[PRP\] (-13, 3, NW): Dedup 0602CBEC
+- \[PRP\] (-13, 1, NW): Dedup 0601B119, 0602EA80
+- \[PRP\] (-14, 3, NW): Dedup 06038664
+- \[PRP\] (-14, 1, NW): Dedup 06008D3E, 0601785A, 0601785C, 0601B0B4, 0602CDB9
+- \[PRP\] (-14, 0, NW): Dedup 06008D1C, 0601B0F3
+- \[PRP\] (-15, 5, NW): Dedup 060373C1, 060373C3
+- \[PRP\] (-16, 3, NW): Dedup 060386E8
+- \[PRP\] (-10, 9, NW): Dedup 0603C42D
+-- Bugs filed for this sprint: U32341 to U32351
+- ~~\[PRP\] (-1, 7, NW): Dedup 06017D29~~
+- \[PRP\] (-1, 6, NW): Dedup 06015913, 06017AA8, 06017AA9
+- \[PRP\] (-1, 4, NW): Dedup 06015677, 06015853, 060159CC, 06017B81, ~~060241D9~~
+- \[PRP\] (-1, 3, NW): Dedup 06015862, 06015868, 0601586C, 06015A1F
+- \[PRP\] (-1, 2, NW): Dedup 06032D70
+- \[PRP\] (-1, 1, NW): Dedup 060144E6, 060540EF
+- \[PRP\] (-2, 7, NW): Dedup 0601BE84, 0601BEFA, ~~0602441F~~
+- \[PRP\] (-2, 6, NW): Dedup 06016D43
+- ~~\[PRP\] (-2, 5, NW): Dedup 060241B2~~
+- \[PRP\] (-2, 4, NW): Dedup 06047D2A
+- ~~\[PRP\] (-2, 0, NW): Dedup 06033584~~
+- \[PRP\] (-3, 7, NW): Dedup 06015D87, 06015DB8, 06015E01
+- \[PRP\] (-3, 0, NW): Dedup ~~0603518A~~, 0603B8F2
+- \[PRP\] (-4, 7, NW): Dedup 06017034
+- \[PRP\] (-4, 6, NW): Dedup 06024410
+- \[PRP\] (-4, 3, NW): Dedup 060449DD
+- \[PRP\] (-4, 0, NW): Dedup 0603ACA4, 0604BF62
+- \[PRP\] (-5, 1, NW): Dedup 0603B039
+- \[PRP\] (-5, 0, NW): Dedup 060129A0
+- ~~\[PRP\] (-6, 3, NW): Dedup 0603794F~~
+- \[PRP\] (-6, 0, NW): Dedup 06040EFB, 060415FA
+- \[PRP\] (-7, 0, NW): Dedup 06036E98
+- \[PRP\] (-1, 13, NW): Dedup 0603DD1F
+- \[PRP\] (-1, 10, NW): Dedup 0602C0C0
+- \[PRP\] (-1, 9, NW): Dedup 0602A308
+- \[PRP\] (-1, 8, NW): Dedup 06033795
+- \[PRP\] (-2, 15, NW): Dedup 06035832
+- \[PRP\] (-2, 9, NW): Dedup 0600CD59
+- \[PRP\] (-3, 9, NW): Dedup 0602C210
+- \[PRP\] (-3, 8, NW): Dedup 0601DAD2
+- \[PRP\] (-4, 8, NW): Dedup 0601DAD4
+- \[PRP\] (-9, -9, NW): Dedup ~~0601F3BC~~, 0601FD8F
+- \[PRP\] (-9, -10, NW): Dedup 0601FD5F, 0601FD60, 0601FD61
+- \[PRP\] (-9, -12, NW): Dedup 0601F3C6
+- \[PRP\] (-10, -10, NW): Dedup 0601DE31
+- ~~\[PRP\] (-11, -9, NW): Dedup 0601DDB6~~
+- \[PRP\] (-11, -10, NW): Dedup 0601DDE1
+- \[PRP\] (-16, -13, NW): Dedup 0604FEBE
+- \[PRP\] (-9, -4, NW): Dedup 0601CA34
+- \[PRP\] (-9, -5, NW): Dedup 0602871B
+- \[PRP\] (-9, -7, NW): Dedup 060112FA
+- \[PRP\] (-9, -8, NW): Dedup 0601E930
+- \[PRP\] (-10, -6, NW): Dedup 0601C9C8
+- ~~\[PRP\] (-10, -8, NW): Dedup 0601E8E8~~
+- \[PRP\] (-11, -8, NW): Dedup 0601DDAE
+- \[PRP\] (-13, -1, NW): Dedup 0601ABCA, 0601ABCC
+- \[PRP\] (-15, -1, NW): Dedup 0602CF3A, 0602CF3A
+- \[PRP\] (-5, -19, NW): Dedup 0604FF9B
+- \[PRP\] (-1, -10, NW): Dedup 06020AEE
+- ~~\[PRP\] (-1, -11, NW): Dedup 06020AE9~~
+- \[PRP\] (-3, -13, NW): Dedup 0603B80B
+- \[PRP\] (-4, -11, NW): Dedup 06013165
+- \[PRP\] (-5, -9, NW): Dedup 0601F2F6, 0601CD80
+- \[PRP\] (-5, -10, NW): Dedup 0602004E
+- \[PRP\] (-5, -11, NW): Dedup 06013160
+- \[PRP\] (-6, -14, NW): Dedup 0603B77B
+- ~~\[PRP\] (-7, -10, NW): Dedup 0601FE8D~~
+- \[PRP\] (-7, -16, NW): Dedup 0604FFC3
+- \[PRP\] (-8, -9, NW): Dedup 0601FD88
+- \[PRP\] (-8, -16, NW): Dedup 0604FFC1
+- ~~\[PRP\] (-1, -1, NW): Dedup 06042B99~~
+- \[PRP\] (-1, -2, NW): Dedup 0604062F, ~~060429E0, 06042BB1~~
+- \[PRP\] (-1, -3, NW): Dedup 06041382, 0605077C, 0605077C, 06055C2B
+- \[PRP\] (-1, -4, NW): Dedup 060235E0, 060281F1
+- \[PRP\] (-1, -5, NW): Dedup 0602D2B9
+- \[PRP\] (-1, -6, NW): Dedup 0600BE62, 0600BE5C, 0600BE5B, 0600BE5A, 0600BE63, 0600BE60, 0600BE5F, 0600BE5E, 0600BE59, 0600BE58, 0600BE61, 0600BE5D, 0600BE57, 06028392
+-- Note on the first 12, already fairly underground, probably tagged by Beth for removal at some point.
+- ~~\[PRP\] (-2, -1, NW): Dedup 060351B2~~
+- \[PRP\] (-2, -2, NW): Dedup 06028030, 0602805D, 0602805C
+-- Last two were under ground.
+- \[PRP\] (-2, -4, NW): Dedup 060282A9
+- \[PRP\] (-2, -6, NW): Dedup 0602837C, 0602837D, 0602837F, 06028382, 06028383, 06028384, 06028386, 06028387, 0602838D, 0602838E
+- ~~\[PRP\] (-2, -7, NW): Dedup 06028393~~
+- \[PRP\] (-3, -1, NW): Dedup 06035D71, 06049617
+- \[PRP\] (-3, -3, NW): Dedup 060280DE
+- \[PRP\] (-3, -4, NW): Dedup 060282C0, 060282CB, 060282D3, 060282D9
+- \[PRP\] (-3, -6, NW): Dedup 0602835C, 06028377
+- \[PRP\] (-3, -7, NW): Dedup 060283D3, 06053745, 06053746
+- \[PRP\] (-4, -1, NW): Dedup 0603AF56
+- \[PRP\] (-4, -4, NW): Dedup 060282DA
+- \[PRP\] (-4, -6, NW): Dedup 0602832D, 0602832E, 0602832F, 06028330, 06028331, 0602834C
+- \[PRP\] (-5, -1, NW): Dedup 0603BBD4, 0603BBD5
+- \[PRP\] (-5, -2, NW): Dedup 0601F572
+- \[PRP\] (-5, -3, NW): Dedup 06028061, 06028062
+- \[PRP\] (-5, -4, NW): Dedup 060142C0
+- \[PRP\] (-5, -5, NW): Dedup 0601428D, 0602BEE1
+- \[PRP\] (-6, -3, NW): Dedup 06013FAD
+- \[PRP\] (-6, -7, NW): Dedup 06013B6E
+- \[PRP\] (-6, -8, NW): Dedup 0603B4F6
+- \[PRP\] (-7, -3, NW): Dedup 06029D3F
+- \[PRP\] (-8, -4, NW): Dedup 0601422D, 0601CACE
+- \[PRP\] (-8, -5, NW): Dedup ~~0601CAB8~~, 0601CAD3
+- \[PRP\] (-8, -7, NW): Dedup 06043338
+- \[PRP\] (0, -5, NWA): Dedup 06052A56
+- \[PRP\] (0, -6, NWA): Dedup 06053443
+- \[PRP\] (-1, -5, NWA): Dedup 060532D7
+- \[PRP\] (0, -5, NWM): Dedup 06054B1D, 06054B91, 06054ED6, 06054F12, 060558D7
+- \[PRP, U32521, U32507\] (21, 19): Fixed up the poles and threw down additional tile nearest 000bd4a6, ~~08000058~~
+- \[PRP\] (5, 4): Did some maintenance work with the pier and road in the area. What a mess. 08000055, 08000056, 08000057
+- \[PRP\] (Vault75): Shift slightly F0433 and neighbors to fix previs generation. 
+- \[PRP\] (Vault95): A lot of alignment work as pointed out by Glitchfinder, also fix multiple incorrect texswaps.
+- \[PRP\] ~~Imported new references from Glitch's Fixes that weren't already pulled from existing UF4OP bug reports, as noted below.~~ 28869, 28872, and 28905, the source UF4OP bugs were merged upstream.
+- ~~\[PRP\] (Vault81Entry): 08000053 and 08000054~~
+- ~~\[PRP\] (Vault81Secret): 0800002F to 08000052~~
+- ~~\[PRP\] (DmndSecurity01): 0800002B to 0800002E~~
+- ~~\[PRP\] (CambridgeMassChemical01): 0800001C to 0800002A~~
+- \[PRP, U32338\] (-6, 1): Add a new DecoRoofATrimBCorCap01 to match the one in the below entry. 08000016
+- \[PRP, U32338\] (-5, 1): Further refinements from VlitS after last night's work on the building. 30146, 3033E, 08000015
+- ~~\[U32335\] (-5, 1): Plug hole at 304B9 to halt previs strangeness and also fix a development leftover. 08000014~~
+- \[PRP\] (-26, 10): Dedup 00193D1F, 00193D20
+- \[PRP\] (-17, 6): Dedup 001F9A4B
+- \[PRP\] (-20, 5): Dedup 000275FF 
+- \[PRP\] (-21, 5): Dedup 0020E3DF
+- \[PRP\] (-17, 4): Dedup 000A771B
+- \[PRP\] (-17, 1): Dedup 001FB33E, 0014E645
+- \[PRP\] (-20, 0): Dedup 00115933
+- \[PRP\] (-22, 0): Dedup 001A74CE
+- \[PRP\] (-21, 15): Dedup 00082180, 0023FCA8
+- \[PRP\] (-23, 15): Dedup 0022D9A0
+- \[PRP\] (-20, 14): Dedup 0019861A
+- \[PRP\] (-18, 13): Dedup 001AE0D5
+- \[PRP\] (-19, 11): Dedup 00094C0F, 00094C13
+- \[PRP\] (-20, 11): Dedup 00097542, 0009753C
+- \[PRP\] (-18, 10): Dedup 00025611
+- \[PRP\] (-23, 10): Dedup 00193F88
+- \[PRP\] (-22, 9): Dedup 0022DBFE, 0022DBFF, 0022DC00, 0022DC01, 0022DC02, 0022DC03, 0022DC04, 0022DC05, 0022DC06, 0022DC07, 0022DC08, 0022DC09, 0022DC0A, 0022DC0B, 0022DC0C, 0022DC0D, 0022DC0E, 0022DC0F, 0022DC10, 0022DC11, 0022DC12
+- \[PRP\] (-21, 9): Dedup 0022DC13, 0022DC14, 0022DC15, 0022DC16, 0022DC17, 0022DC18, 0022DC19, 0022DC1A, 0022DC1B, 0022DC1C, 0022DC1D, 0022DC1E, 0022DC1F
+- \[PRP\] Fix positioning of 68A78 to stop z-fighting. I doubt anyone's going to notice the extra block from where it currently sits.
+- ~~\[U32328\] Fix 1E7723 clipping through roof.~~
+- \[PRP\] Import remaining Flicker Fixer model set from 5.7 release. (HouseKit/, meshes already in git)
+
+57
+
+- \[PRP\] Fixed missing header forward in previous release.
+- \[PRP\] Added Meshes (NOT textures, we don't do those) from the Airport Transparency Fix.
+- \[PRP\] Generated MDHT for Nuka World.
+- \[PRP\] Compacted PPF.esm to allow for ESL tagging.
+- \[PRP\] Included pair of SCOLs that came with Flicker Fixer into main archive.
+- \[PRP\] Import Flicker Fixer model set, to include in generation.
+- \[PRP\] (DLC06VaultWorkshop): Dedup 05003C5A, 05001E78, 050022AB, 050022AD, 050022AF, 050022FD, 050022FF
+- Why the fuck is it called DLC06 when it's DLC05?
+- \[PRP\] (2, -4): Dedup 00187B4A, 001CA806
+- \[PRP\] (3, -5): Dedup 001D02B8
+- \[PRP\] (2, -6): Dedup 0023C75F, 0023C760, 0023C761, 0023C762, 0023C763, 0023C764, 0023C765, 0023C766, 0023C767, 0023C768, 0023C769, 0023C76A, 0023C76B, 0023C76C, 0023C76D, 0023C76E, 0023C76F, 0023C770, 0023C771, 0023C772, 0023C773, 0023C774, 0023C775, 0023C776, 0023C777, 0023C778, 0023C779, 0023C77A, 0023C77B, 0023C77C, 0023C77D, 0023C77E, 0023C77F, 0023C780, 0023C781, 0023C782, 0023C783, 0023C784, 0023C785, 0023C786, 0023C787, 0023C788, 0023C789, 0023C78A, 0023C78B, 0023C78C, 0023C78D, 0023C78E, 00148894, 0023C78F, 0023C790, 0023C791, 0023C792, 0023C793, 0023C794, 0023C795, 0023C796
+- Every subrecord deduplicated above was also tagged with the `_Theater_LOD` layer tag, which may alter LOD in the area significantly.
+135A45 is under terrain, also deduplicated.
+1359EE also covered by other references above it and is unreachable.
+~~23C797 is a duplicate lootbox that UF4OP can also pick up, filed as \[U32314\]~~
+- \[PRP\] (2, -7): Dedup 0017C016, 00164196, 0023C759, 0023C75A, 0023C75B, 0023C75C, 0023C75D
+- \[PRP\] (-23, 9): Dedup 0009CFA6, 0009CFA4
+- \[PRP\] (-18, 8): Dedup 0020978C
+- \[PRP\] (-17, 23): Dedup 0005E13B
+- \[PRP\] (-23, 23): Dedup 0019BEB9
+- \[PRP\] (-17, 22): Dedup 0018B309
+- \[PRP\] (-20, 22): Dedup 00056FEF
+- \[PRP\] (-19, 21): Dedup 0007898D
+- \[PRP\] (-20, 21): Dedup 00083E2B
+- \[PRP\] (-19, 19): Dedup 0019B3BB
+- \[PRP\] (-22, 19): Dedup 00060BE7
+- \[**U32316**, PRP\] (-19, 16): Dedup **00066F0F**, 000640C4, 0005540C
+- ~~Marked the relevant subrecord bold for the bug.~~ Deletion merged upstream
+- \[PRP\] (-20, 25): Dedup 002255A7
+- \[PRP\] (-23, 25): Dedup 0021DC21, 0021DC22, 0021DC23, 0021DC24, 0021DC25
+- \[PRP\] (-18, 24): Dedup 00090F76
+- \[PRP\] (-14, 6): Dedup 0001DAD1
+- ~~\[U32308\] (-9, 5): Dedup 001978CA~~
+- \[PRP\] (-12, 4): Dedup 00058C95, 000EC8E9, 000EC8E8
+- \[PRP\] (-14, 4): Dedup 0015B792
+- \[PRP\] (-14, 3): Dedup 0015A3D3
+- \[PRP\] (-9, 14): Dedup 00224E11, 00224E0C, 00224E0B, 00224E0A, 00224DF4
+- \[PRP\] (-10, 14): Dedup 0006403D
+- ~~\[U32317\] (-16, 14): Dedup 00203AEC~~
+- \[PRP\] (-9, 11): Dedup 0024050A, 0024050B, 0024050C
+- \[PRP\] (-10, 11): Dedup 00191C0C, 000FD4DC, 000DB810
+- \[U32318\] (-9, 10): Dedup 00240594
+- \[PRP\] (-9, 9): Dedup 001019E9
+- \[PRP\] (-10, 9): Dedup 00165580, 00165581, 00165582
+- \[PRP\] (-9, 8): Dedup 000FD17E, 000FD133
+- \[PRP\] (-10, 22): Dedup 0018ED85
+- \[PRP\] (-11, 21): Dedup 0008E428
+- \[PRP\] (-14, 21): Dedup 0018C1EE
+- \[**U32319**, PRP\] (-11, 20): Dedup 0002E05B, 0002E05A, **002322C4**
+- \[PRP\] (-15, 19): Dedup 000346FB
+- \[PRP\] (-13, 18): Dedup 000329B4, 00032994
+- \[PRP\] (-16, 18): Dedup 000346B6
+- \[PRP\] (-10, 17): Dedup 0019EA75
+- \[PRP\] (-9, 16): Dedup 0001CEAF
+- \[PRP\] (-10, 26): Dedup 0022BD2F
+- \[PRP\] (-15, 24): Dedup 00063E8E, 00063E8C
+- \[PRP\] (-6, 7): Dedup 001F7DE1
+- \[PRP\] (-8, 7): Dedup 000DBD17
+- \[PRP\] (-1, 5): Dedup 000BF249, 000BF24A, 000BF24B, 000BF24C, 000BF24F, 000BF250, 000BF251, 000BF252, 000BF253, 000BF254, 000BF255, 000BF256, 000BF257, 000BF25A, 000BF25C, 000BF25D, 000BF25E
+- \[PRP\] (-7, 5): Dedup 00239B59
+- \[PRP\] (-1, 4): Dedup 000D2E28, 000D2E29, 000D2E40, 00163624
+- \[PRP\] (-2, 4): Dedup 000A9537
+- ~~87DE3 also filed as U32307~~
+- \[PRP\] (-3, 4): Dedup 001C13B8, 000B14E6
+- For B14E6, normally, we leave one instance of the duplicated subrecord, but this specific Bramble02 appears to be under pavement and brick and would otherwise be clipping out. I think this is an instance that can be deleted.
+- \[PRP\] (-5, 4): Dedup 00159FB5
+- \[PRP\] (-6, 4): Dedup 001E23E5, 001E1C68
+- \[PRP\] (-2, 3): Dedup 00153E85
+- \[PRP\] (-4, 3): Dedup 0008586A
+- \[PRP\] (-6, 3): Dedup 00173F58, 00168923
+- \[PRP\] (-7, 3): Dedup 0010783C, 001703C5, 001703C6
+- Re: Remaining fence object ( 0016ACF2 ) may have to be lowered later. 
+- \[PRP\] (-8, 3): Dedup 00063387
+- \[PRP\] (-2, 2): Dedup 000B1E79
+- \[PRP\] (-3, 2): Dedup 000BA732
+- \[PRP\] (-4, 2): Dedup 00035CC1
+- \[PRP\] (-5, 2): Dedup 000AC80D, 000B8C9F
+- \[PRP\] (-7, 2): Dedup 001B9F60
+- \[PRP\] (-8, 2): Dedup 001A9513
+- \[PRP\] (-1, 1): Dedup 0022D292
+- \[PRP\] (-2, 1): Dedup 0016FAD1, 0020593E
+- \[PRP\] (-3, 1): Dedup 000A9783
+- \[PRP\] (-5, 1): Dedup 0017408D, 00174025
+- \[PRP\] (-6, 1): Dedup 0017297A, 00097A57
+- \[PRP\] (-7, 1): Dedup 00160036, 00160035, 00154CAE
+- \[PRP\] (-8, 1): Dedup 001600BE
+- \[PRP\] (-1, 0): Dedup 0008AE2B, 0016D7FC
+- \[PRP\] (-2, 0): Dedup 0008AD0D, 001D97CB
+- \[PRP\] (-3, 0): Dedup 000A3187, 000A31A1, 000A31A2
+- \[PRP\] (-6, 0): Dedup 00185817, 0023CA81
+- \[PRP\] (-7, 15): Dedup 001E5F97
+- \[PRP\] (-8, 15): Dedup 00045F46
+- \[PRP\] (-7, 13): Dedup 000A985E
+- \[PRP\] (-6, 12): Dedup 00072352
+- \[PRP\] (-6, 11): Dedup 001F53C1, 001F5332
+- \[PRP\] (-4, 10): Dedup 00193338, 00193337
+- \[PRP\] (-8, 9): Dedup 000EAA66, 000EAA75, 000EAA7A, 000EAA7B, 000EAA7C, 00101AEC, 00101AED, 00101AEE
+- \[PRP\] (-1, 8): Dedup 000A90D4
+- \[PRP\] (-5, 8): Dedup 001F7EB4
+- \[PRP\] (-6, 8): Dedup 0023A346
+- \[PRP\] (-3, 21): Dedup 001F34D7
+- \[PRP\] (-3, 20): Dedup 001F358D
+- \[PRP\] (-5, 20): Dedup 001FA2B4
+- \[PRP\] (-5, 17): Dedup 000F0A90
+- \[PRP\] (-6, 26): Dedup 0022BDC5
+- \[PRP\] (-4, 25): Dedup 001D28DA
+- \[PRP\] (-5, 25): Dedup 0022BDEC
+- \[PRP\] (-6, 25): Dedup 0022BDA7
+- \[PRP\] (-8, 25): Dedup 0013A6D3
+- \[PRP\] (-27, -33): Dedup 00192180, 0019217E, 0019217C, 00192179, 19216F, 19217A, 19217B, 19217D, 19217F, 192175, 192176, 192177, 192178, 192173, 192172, 192174, 00192171, 0011C6DD, 00192170
+- Note on above, 192171 was part of a RFGR, but since literally all of the first sixteen subrecords were the same cart, I don't think it's going to matter.
+- \[PRP\] (-25, -28): Dedup 002074BA
+- \[PRP\] (-25, -29): Dedup 00148EA5
+- \[PRP\] (-27, -30): Dedup 00193BB3
+- \[PRP\] (-31, -21): Dedup 0022C848
+- \[PRP\] (-30, -22): Dedup 00190A81
+- \[PRP\] (-25, -9): Dedup 0007632E, 00214633
+- \[PRP\] (-25, -10): Dedup 0014E9A2
+- \[PRP\] (-26, -12): Dedup 0020FC69, 0020FBBC, 0020FBBB, 0020FAC4, 0020FA06, 0020FA05, 00075F78
+- \[PRP\] (-26, -13): Dedup 001621C2
+- \[PRP\] (-27, -14): Dedup 001621D6
+- \[PRP\] (-22, -25): Dedup 000FA34A
+- \[PRP\] (-20, -29): Dedup 00210DFA
+- \[PRP\] (-17, -32): Dedup 0018FAE0
+- \[PRP\] (-18, -31): Dedup 0018FB04
+- \[PRP\] (-19, -17): Dedup 0017737C
+- \[PRP\] (-24, -24): Dedup 0018F53F, 0018F475, 0018F436, 0018F435, 0018F3E2, 0018F3A7
+- \[PRP\] (-17, -9): Dedup 001FF285, 001FF258, 001FB750
+- \[PRP\] (-18, -9): Dedup 001FF284, 001FF257, 001FF256, 001FF255, 001FF254, 001FF253, 001FF252, 001FF251, 001FF250, 001FF24F, 001FF24E, 001C5DBC, 001C5DBA
+- \[PRP\] (-21, -9): Dedup 000775B0, 000775B4
+- \[PRP\] (5, -4, GN): Move 119D01 to fix the missing ceiling nearest Bobbi in Goodneighbor, thanks Yarrmateys.
+- \[PRP\] (-22, -9): Dedup 00239F22
+- \[PRP\] (-17, -10): Dedup 00205434, 00205433, 00205432, 00205430
+- \[PRP\] (-20, -10): Dedup 002307B7, 001FFEFF
+- \[PRP\] (-18, -11): Dedup 001D5A07
+- \[PRP\] (-18, -12): Dedup 002053FF
+- \[PRP\] (-21, -12): Dedup 00232358, 00076056, 0020538E
+- \[PRP\] (-22, -13): Dedup 00232559
+- \[PRP\] (-21, -14): Dedup 00153D19
+- \[PRP\] (-22, -1): Dedup 001A52CD
+- \[PRP\] (-23, -3): Dedup 00094C43, 00094C44
+- \[PRP\] (-22, -4): Dedup 001F9B69
+- \[PRP\] (-17, -5): Dedup 000543D8
+- \[PRP\] (-22, -5): Dedup 000E3F92, 000E3F91
+- \[PRP\] (-18, -6): Dedup 001FF346
+- \[PRP\] (-22, -7): Dedup 001FB54B
+- \[PRP\] (-15, -28): Dedup 000FC4FC
+- \[PRP\] (-16, -29): Dedup 000D202A
+- \[PRP\] (-16, -31): Dedup 0018FA72
+- \[PRP\] (-13, -17): Dedup 001CF08C
+- \[PRP\] (-11, -18): Dedup 0016772F
+- \[PRP\] (-12, -18): Dedup 00056F89
+- \[PRP\] (-12, -19): Dedup 00018E07
+- \[PRP\] (-14, -20): Dedup 001E7769
+- \[PRP\] (-16, -21): Dedup 000F7270
+- \[PRP\] (-10, -22): Dedup 0022FCB6
+- \[PRP\] (-15, -9): Dedup 001FF4C5
+- \[PRP\] (-13, -10): Dedup 00209F53
+- \[PRP\] (-15, -10): Dedup 00205530, 0020552F, 0020552E, 0020552D, 0020552C
+- \[PRP\] (8, 8, FH): Shift 030211AA by -40 z rotation to fix the glass positioning as originally reported at https://www.nexusmods.com/fallout4/mods/40230 and fixed by MrTroubleMaker on the nexus. Thanks for letting me use this fix!
+- ~~\[U32304\] (-15, -15): Added a new RoadChunk03 to help mask the water leak observed in the area.~~ Merged upstream.
+- \[PRP\] (0, -4): Adjust BldgBrick4Story2x2ResEntA 73473 hopefully to fix a previs issue.
+- \[PRP\] (-11, -11): Dedup 001C4B16
+- \[PRP\] (-13, -14): Dedup 00157CCC
+- \[PRP\] (-9, -16): Dedup 001811C7
+- \[PRP\] (-10, -1): Dedup 0020323B
+- \[PRP\] (-15, -1): Dedup 00214BB5
+- \[PRP\] (-16, -1): Dedup 000E594F
+- \[PRP\] (-15, -2): Dedup 000E6B08
+- \[PRP\] (-9, -3): Dedup 002030BD, 00186FD9
+- \[PRP\] (-10, -3): Dedup 0013817B, 0013817A, 00138172, 0013B51B, 0013B51F, 0013B520, 0013B521
+- \[PRP\] (-15, -4): Dedup 0005E4B9
+- \[PRP\] (-9, -5): Dedup 00204B96
+- \[PRP\] HalluciGenExt (1, -4): Remove errant 176D4C placement (DecoMainA1x1Win07 / chunk of a building with window texture)
+- \[PRP\] (-14, -5): Dedup 00228CB2
+- \[PRP\] ForestGroveMarshExt05 (-16, -5): Dedup 000F4884
+- \[PRP\] Vault81Ext (-10, -6): Dedup 00209673, 0020968B
+- \[PRP\] (-3, -17): Dedup 00175F97
+- \[PRP\] (-3, -18): Dedup 0011FEE3
+- \[PRP\] (-3, -21): Dedup 001D625B
+- \[PRP\] (-5, -21): Dedup 001F411B
+- \[PRP\] (-3, -9): Dedup 00111A49, 001CAFCD
+- \[PRP\] FensEvansWayCuldeSac (-4, -9): Dedup 00111934
+- \[PRP\] POISC08 (-5, -11): Dedup 001C8C95
+- \[PRP\] (-6, -11): Dedup 0015EED7
+- \[PRP\] POISC21 (-3, -12): Why the fuck is there two exactly placed cages on the same exact point, Seymour? You should delete 00206179 at least!
+- \[PRP\] MiltonGeneralExt (-2, -15): Dedup 001D3CDD
+- \[PRP\] (-4, -15): Dedup 001DF96B
+- \[PRP\] (-8, -15): Dedup 001D0BB2
+- \[PRP\] ShawHighSchoolExt (-1, -16): Dedup 001BD184, 001BD186, 001BD18A, 001BD18C, 001BD190, 001BD192, 001BD196, 001BD198
+- \[PRP\] WestRoxburyStationExt02 (-2, -16): Dedup 000E50C1, 000E07A7, 000E07A5, 000E079A, 000E0798, 000B3247
+- \[PRP\] FallonsDepartmentStoreExt (-3, -16): Dedup 00142E14, 000B319B
+- \[PRP\] FallonsDepartmentStoreExt02 (-4, -16): Dedup 001DF959, 001DF929
+- \[PRP\] (-8, -16): Dedup 00021A3D, 000464E0
+- \[PRP\] (-2, -1): Dedup 000D2282
+- \[PRP\] RiverExt01 (-3, -1): Dedup 000A6D6F, 0018560A
+- \[PRP\] USSRiptideExt02 (-6, -2): Dedup 0023BFD3
+- \[PRP\] (-7, -2): Dedup 00186889
+- \[PRP\] (-8, -2): Dedup 0016C30F
+- \[PRP\] (-4, -5): Dedup 001130A3, 001130A4
+- \[PRP\] FensRaiderCampExt02 (-5, -5): Dedup 00108C40
+- \[PRP\] (-7, -5): Dedup 00209762, 00209753, 001B5F66
+- \[PRP\] BostonPublicLibraryExt (-1, -6): Dedup 00176A0B
+- \[PRP\] FensIntersection01 (-2, -6): Dedup 00177F91, 00177F63, 001769A0, 000B20E6
+- \[PRP\] (-3, -6): Dedup 0015D7BC
+- \[PRP\] (-4, -6): Dedup 0016A4DD
+- \[PRP\] (-6, -6): Dedup 001AC8A5, 00119728, 00108E82
+- \[PRP\] ChestnutHillockReservoirExt03 (-7, -6): Dedup a roof tile. 1A7E18
+- \[PRP\] ChestnutHillockReservoirExt02 (-8, -6): Deduplicate a Traffic Cone. 14322D
+- \[PRP\] Vault95: Slightly shift a world block to close a void hole near DFF18 (Vault Door)
+- \[U22211\] Fix the rotation of the sign. The UF4OP precombined file contributed is overwritten as part of the process we do for PRP, so for our purposes we just have to rotate the sign.
+- ~~\[U32299\] ScrapPalaceExt04: 1A0CD5 Move armor workbench away from the crates it appears to be shoved inside of.~~ Merged upstream.
+- \[PRP\] CutlerBendExt07: Fix positioning of a pair of wrecks near a fence.
+- \[PRP\] QASmoke: Migrated DLC01 related cell changes to main cell. Non-essential bugfix.
+- \[PRP\] WestRoxburyStationExt (-3, -15): Round off coords for 20E166 to hopefully fix the object flickering.
+- \[PRP\] WestRoxburyStationExt (-3, -15): Move the Motorcycle01 (1D3AE3) reference here to look more believable than stuck in the ground.
+- \[PRP\] CambridgePDExt02 (-8, 2): UDR'd 190B54, looked like it was overlapping 193670 presumably a development oversight at some point, maybe the original model didn't have windows on that side?
+- ~~\[U32174, PRP\] BunkerHillExt (4, 3): Added a RWPieceWallAStr01 to fill a hole that the RWPieceTopCapStr01a is showing on the left side from a certain angle. PRP record 12.~~ Merged upstream.
+- \[PRP\] ~~DLC01FortHagenSatelliteArray01: 01001D99, 01001D9B, 01001D9C, 01001D9D, 01001D9E, 01007430, 0100743F, 01008275, 01008816, 01008F2A, 0100A038, 0100A376, 0100D1C8, 0100EC9D, 0100EC9E, 0100ED55, 0100ED56 dedup'd.~~ Slated for revert in next build due to void holes in the area that appear unfixable. Will be saved to PPF when time allows.
+- ~~\[U31804, PRP\] -1, -15 CW 20B07, 20B3B/3C/3D/3E/3F/40/41/42/43/44/45/46/47/48/49 Various Skylight placement plate shifting to fix a previsibine issue, which fixes the occlusion, but as per the attached bug, the bug is really due to a missing flag in the material file. Placement fix pending removal in 0.55.xx~~ Material fix merged upstream. Revert in 0.60
+- \[PRP\] 20, 17 CW: 1C9CD6 has a floating rear piece. ~~Since it's a SCOL, just nudge the placement.~~ Broke the SCOL at least for now. Not seeing a good way to fix this one.
+- \[PRP\] 16, 12 CW: 1B5509 grounded to fix bad placement that revealed a hole to the water nearby. Shoddy construction.
+- ~~\[U31795, PRP\] 12, 20 CW: 91591 needed raised above the sidewalk, shifted to work around navmesh in the area, positioning might need tuning.~~ Fixed in UF4OP 2.1.4 proper.
+- \[PRP\] -5, -5 CW: 1914F and 11308B were lowered to cover up a hole in the foundation from bad building placement.
+- \[PRP\] -1, -7 CW: 1463AE, 1906DB, 190777, 2479FD, 2479FE dedup.
+- \[PRP\] -5, -7 CW: 115653, 1ACA05 dedup.
+- \[PRP\] -7, -7 CW: 23286E dedup.
+- \[PRP\] -1, -8 CW: 653C7, 654ED, 247A05, 247A06 dedup.
+- \[PRP\] -3, -8 CW: 3E038, 3E19D, 1CAFCE dedup.
+- \[PRP\] -6, -8 CW: 10DD6A, 10DD6B dedup.
+- \[PRP\] 3, 0 DC: 86C59 deduplicated.
+- \[PRP\] 6, -2 GN: 207278 deduplicated.
+- \[PRP\] 6, -3 GN: 2071D2, 207173, 206FEF, 206FEE, 206FEB, 206FEA, 206FE9, 206FE8, 68B44 deduplicated.
+- \[PRP\] 6, -4 GN: 206EF1, 206E6C deduplicated.
+- \[PRP\] 5, -2 GN: 231FF2, 6736D deduplicated.
+- \[PRP\] 5, -3 GN: 1140EF, 110FC2, 110FEA, 237C64, 237C65, 248789, 248794, 24879C deduplicated.
+- \[PRP\] 5, -4 GN: 2066BE deduplicated.
+- \[PRP\] 4, -2 GN: 206BCD, 206AA3 deduplicated.
+- \[PRP\] 4, -3 GN: 206877, 206872, 206871, 206832, 206833, 20674C, 206736, 2066F5 deduplicated.
+- \[PRP\] 4, -4 GN: 2066DD deduplicated.
+- \[PRP\] -24, 22 SHW: 122723 and 17FDDF Deduplicated.
+- \[PRP\] -3, -4 CW: Moved 1B6201 and associated objects on shelving to not clobber nearby flooring. Also UDR'd 1B61E5 (duplicate)
+- \[PRP\] -3, -4 CW: Raised ~~1132F7~~, 1132F6, 1B6224 and 1B6239 to counteract a visible hole in the furniture. Nearby 1B61EC and 1B6203 were also shifted to make the higher position more easily attainable by walking.
+- \[PRP\] 7, 12 CW: 1B4789 Hard to see NFoothillsShrubLarge01 badly placed and repositioned.
+- \[PRP\] AtomatoysFactoryExt03: 49E3D, 49E4C, 49E4D, 49ED9 Fixed position of pipes to stop occlusion confusion when looking between them. Thanks to Zaw (Horizon) for bringing it to my attention.
+- \[PRP\] DLC04BottlingPlant01: Clear out about 45 or so invalid XRFG \(Reference Group\) entries that the CK did automatically in previous builds, otherwise leaves the area unchanged.
+- \[U23865\] DLC03VimPopFactory01: 03017695 \(BldWlpSmWall01\) and 0301FB6F \(MetalShelf01_Broken01\) got moved and the room extended to clear up the door clobbering the shelf.
+- \[U?????, PRP\] LaytonTowers01: 15D9B8 from UF4OP, 15D934, 15D9E1, 15D9E2 had slight adjustments, the reason why escapes me. Needs verifying.
+- \[PRP\] DLC01Lair01: A pair of DefaultLightCoolFLSpotNS entries had their XRFG cleared.
+- \[U25794, PRP\] DLC03Vault118: 0303B4DA and 030490BC got Z-flipped by 180 degrees to correct their likely intended way to use a camera, all other records were more invalid XFRG clearing.
+- \[U21471\] FensStreetSewer01: Shifted position of B3BDB to remove the obvious hole that was showing up in certain angles.
+- \[PRP\] DLC04NukaWorldPowerPlant01: 0602CF9B Moved countertop to not z-fight the neighboring countertop.
+- \[U30536\] BostonPublicLibrary02: 174346 Corrected the position of a bookcase.
+- \[PRP\] Vault114: 5C955, AB399, and AB3E9 got shifted to correct previsibine holes. Submitted by krrptd.
+- \[U28872\] DmndSecurity01: 11A477 Corrected missing texture swap to match roof.
+- \[U?????\] GoodneighborBobbisPlace: 10A7DB and 1F4253 Toilet and File folder got moved due to unknown reasons, ask UF4OP.
+- \[U?????\] zVitalePumphouse01: 21A404, 21E06A, 21E06B, 21E06C, 21E06D More UF4OP records.
+- \[U23801\] MedfordMemorial01: 45432 and 45436 countertops got shifted.
+- \[U23460\] MedfordMemorial01: 7DC87 and 20B852 had placement corrected.
+- \[U32315, PRP\] Vault75: 07038FB1 was resulting in a void hole on previsibine generation.
+- \[U23634\] GwinnettBrewery02: AD910 and AD911 moved to correctly stick to a wall.
+- \[PRP\] UniversityPoint01: 87A62 the chair got moved to not be floating awkwardly.
+- \[U?????\] CambridgeCollegeAdminBuilding: 21548A was moved by UF4OP
+- \[U23302, PRP\] CorvegaAssemblyPlant01: D3DC1 got moved to prevent z-fighting, 208218, 208219 and 208DF3 were shifted to prevent awkward clobbering as a result.
+- \[U23635\] IrishPrideShipyard01: 1362BD, 1362BE, 1362BF, 1362C6 positioning fixed to be on walls as intended. Spongebob, me boy.
+- \[PRP\] GeneralAtomicsFactory01: 99AD3, 99AED, A5421, 2134AB, 2134BC, 213511, 213512, 213513, 213514, 213515, 213516, 213518, 213519, 21351A Various barrel and crate moves to stop object clobbering.
+- \[U23636\] MedTekResearch01: 7AC6D Shifted the position of a floor tile.
+- \[U24441\] USAFSatellite01: 24894F Moved a desk out of the way.
+- \[PRP\] NHMFreightDepot01: AA1A1, ADBBA, ADBBD, ADBBF, ADBC1, ADBD0, 20997C, 20997D, 20997E, 20997F, 209880, 20998F, 209990, 209991, 209993 Various placement fixes and moves to fix previsibine holes. Also move 209AF6 and 209AF9 to prevent object clipping.
+- \[PRP\] FallonsDepartmentStore01: 9E4D0, 9E4D2, 1C931F, 1C9320, 1C9321, 1C9322, 08011943-08011947 Various repairs for previsibine holes, submitted by krrptd
+- \[PRP\] PoseidonReservoir01: 946AA, 946AC Move a pair of Sandbags.
+- \[PRP\] MassPikeTunnel01: F4318 Placement shift for previsibine.
+- \[PRP\] VaultTecOffice01: 247F25 Remove desk clutter that could not have a good placement.
+- \[PRP\] DBTechHighSchool01: 246770, 246772 Move a pair of files.
+- \[PRP\] TiconderogaStation01: 3A2F6 Remove the Kitchen door blocking goodies.
+- \[PRP\] TiconderogaStation01: 1A90A9 Fix wall placement.
+- \[PRP\] 7, 5 CW 23A73A, 23A73C Put a pair of dead fish back in the water.
+- ~~\[U31732, PRP\] 4, 1 CW Remove No LOD Water from cell.~~ Merged upstream.
+- \[PRP\] 0,1 CW 1A32E3 (Historically in BostonFPSFix and reported by another user) Disable Test Occlusion Box in this cell.
+- \[U23817\] 4, 14 CW 1E6A90 Moved a rubble pile.
+- \[U24712\] 2, 9 CW 1138E2 Moved a fire extinguisher holder more closely to the wall
+- \[U23727\] 9, 3 CW BB179 Shifted a trash decal.
+- \[PRP\] 15, 14 CW 22441B Moved a large door.
+- \[PRP\] 14, 14 CW 22441A Also moved a large door. Both moves closed a hole into the void.
+- \[U29277\] 12, 13 CW 28851 Correct a texture swap assignment.
+- \[U31657\] 8, 13; 13, 25; 13, 24; 12, 24; 11, 24; 21, 22 in CW Restored missing VISI/RVIS/PCMB records from Fallout4.esm that got clobbered during generation during DLCCoast.esm's previsibine run in 2016.
+- \[U29278\] 22, 20 CW 1A4CF7 Disable a HoleFillBlack.
+- \[U23690\] 23, 19 CW 4CFC3 Bookcase was shifted, contents in 4CFC7, 4CFCB, 4CFCC, 4CFCD, 1AE139 got moved to roughly match.
+- \[U24789\] 7, -10 CW 177FD8 Move a girder so it's not floating in the air.
+- \[PRP\] 4, -1 1432A7 CW Move a road chunk to stop strange clipping.
+- \[U29279\] 1, -6 CW 6E20A Moved a trash decal
+- \[PRP\] 0, -8 CW LaytonTowers door replacements. (0804A6C9/CA/CB/CC)
+- \[U31657\] 9, -9; 8, -10 CW Same as the DLCCoast bug above but for DLCRobot instead.
+- \[PRP\] 11, -11 CW 6633C Disable a floating pipe segment.
+- \[U31657\] 10, -15; 9, -15 CW Same as the DLCCoast bug above but for DLCNukaWorld instead.
+- \[PRP\] 12, -2 CW 1AEF19, 1AEF1A Add EnableParent to a pair of PlaneMarkers to fix the infamous Airport Fence visibility bug.
+- \[PRP\] 12, -2 CW 1B85B2 Add EnableParent to a Barricade segment intended for when the BoS aren't there, else it sticks out of an existing wall.
+- \[U23507\] 19, -5 CW 1E0F02 Put another dead fish into the water.
+- \[U?????\] -17, 5 CW 80812 UF4OP shifted an elevator top.
+- \[U?????\] -20, 3 CW 14B997, 14B99C A pair of lightbulbs were disabled by UF4OP.
+- \[SE\] -22, 8 CW 23C9C8/C9/CA/CB/CC/CD/CE/CF/D0/D1/D2/D3/D4/D5 A series of disables for CollisionMarkers imported from Scrap Everything, Thanks VlitS!
+- \[U24206\] -19, 22 CW 22226, 22227 Disable a pair of tile rubbles that weren't reachable.
+- \[U24206\] -20, 22 CW 22228 See line above.
+- \[U24452\] -20, 22 CW 6D6F9 Moved a grass cluster.
+- \[SE\] -20, 22 CW 1ED5BD More CollisionMarker disables from SE.
+- \[SE\] -19, 16 CW 6B9F5, 239BA9 More disables for the SE pile.
+- \[U24717\] -16, 14 CW 880E4, 9103E More object moves.
+- \[PRP\] -3, 4 CW 1BB41D, 1BB41E, 1BB41F, 1BB420, 1C13D5 A bunch of CITOccluderTest records that needed disabled.
+- \[U19886\] -4, 4 CW 1660B7, 1660B8 Moved a pair of Grocery Store shelving to prevent blocking the player on falling at certain angles.
+- \[PRP\] -2. 3 CW 15A4C6, 15A4C8, 15A4C9, 15A4CD Object moves to fix previsibine issues.
+- \[U24631\] -2, 1 CW 1BCF9C, 1BCF9D Deleted a pair of decorative objects.
+- \[U21508\] -5, 1 CW 3013D Flipped around a bookcase.
+- \[U31657\] -2, 15; -1, 14; -2, 14; -3, 14; -2, 13 CW Yet more DLCCoast previsibine header clobbering that was repaired.
+- \[U?????\] -6, 11 CW 1BED90 A lamp got changed here. Ask UF4OP.
+- \[PRP\] -8, 9 CW F9EFB I believe this was that building piece that was positioned weirdly.
+- \[U24786\] -3, 16 CW 19FD5C Insert amusing bug description about a metal rod here.
+- \[U23652\] -22, -11 CW 1C0F05 Moved a trash pile.
+- \[PRP\] -19, -1 CW D1551, D1552 Shift slightly a pair of staircases.
+- \[U31518\] -9, -13 CW 8EE09 Getting really tired of these toilet bugs.
+- \[PRP\] -2, -11 CW 129105 Moved a grass blob.
+- ~~\[U31658, PRP\] -2. -15 CW 08000001 Add new SWCurb8x1Str01 to cap off a hole.~~ Merged Upstream
+- \[U31657\] -5, -1 CW Getting monotonous, isn't it? Another DLCNukaWorld cell clobber.
+- ~~\[U28903\] -2, -2; -4, -2 CW 08000002/03/04/05 Implemented a pair of contributed trash cover ups in these cells, thanks to Glitchfinder for this one.~~
+- \[U22977\] -2, -4 CW 23B2C2 Move a trash decal here.
+- \[U28424\] -5, -6 CW 90AD4 Fix rotation and placement for light fixture so it's not embedded in the wall.
+- \[U28185\] 1, 7 FH 305DA94 Move the Leaf Pile nearby so it's not floating in the air.
+- \[U24032\] -6, 1 FH Move a Bramble in this cursed place.
+- \[PRP\] 2, -3 NW Move a Cash Register so it looks like you can actually open the stupid thing.
+- \[PRP\] 0, -4 NW Move a trash bin so it's not awkwardly embedded into a trash pile.
+- \[PRP\] -8, -5 NW Make the big door here not embed into the ground.
