@@ -1,1 +1,1 @@
-In addition to the Bethesda EULA tied to Fallout 4 modding, the development files are subject to the permissions outlined in the permissions and credits tab at (this)[https://www.nexusmods.com/fallout4/mods/46403] mod page on the nexus.
+In addition to the (Bethesda EULA)[https://bethesda.net/en/article/27gkMO8RS6PPItVrenpbuC/bethesda-softworks-community-standards] typically tied to Fallout 4 modding, the development files are subject to the permissions outlined in the permissions and credits tab at (this)[https://www.nexusmods.com/fallout4/mods/46403] mod page on the nexus.
