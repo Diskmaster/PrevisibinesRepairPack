@@ -16,4 +16,16 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 - Marvesly reported a picket fence piece that had an odd texture choice compared to it's brethren, and we discovered that it didn't have a postwar texture swap. Thundra654 created one on our behalf and the matswap has been applied to the gate in West Everett Estates as that's the only reference requiring the swap.
 -- PluginFix BeforeImage AfterImage
 
-00003 
+00003 000C980B MetalBaseA1x1CorWin01Full01
+      000C98E6 MetalBaseA1x1CorWin01Full01
+	  xx004C51 PRP_CambridgeSCOL_BluetoRed
+- Two referenced building block meshes in Cambridge's Mass Chemical interior had a strange blue colorant that looked out of place that can't be fixed without the correct material swap. The swap had to be created explicitly as it didn't exist in the game, but the material file is used in other swaps of this nature.
+-- PluginFix BeforeImage AfterImage
+
+00004 001D0AE3 ExtRubble_Plain_Sm_Mid05
+      001D0B36 ExtRubble_Plain_Sm_Mid05
+      001D0B46 ExtRubble_Plain_Med_High02
+	  xx004C52 PRP_ExtRubblePlaintoDebrisGroundNoAlpha
+- Originally, a trio of rubble was discovered to have holes in them that weren't supposed to be there, and we thought that they had the wrong material file (AFK32322) but then later on, the realization that the material file was also assigned to other meshes (AFK32590) (AFK32691) so a new material swap needed to be made to get around the issue as the correct no alpha mat is already in the game, just not hooked up to a matswap.
+-- PluginFix BeforeImage AfterImage
+
