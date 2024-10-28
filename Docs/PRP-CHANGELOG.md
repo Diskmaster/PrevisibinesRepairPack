@@ -50,3 +50,8 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
            Materials\SetDressing\Signage\BillboardSignPRP.BGSM
 -- Intended to allow for replacement of the nearest billboard to the Vault 111 entrance for collection users to better identify installs with.
 
+00007
+- xx004C5B PRP_CompatQuests
+           Scripts\PRP\DisableObjectIfModExists.pex
+		   Scripts\Source\User\PRP\DisableObjectIfModExists.psc
+-- A Story Manager Branch Node needed to setup the Creation Club specific detections and dynamic disables implemented to handle them. Also include the compiled script itself and source.
