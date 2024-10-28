@@ -44,3 +44,9 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 - 
 -- Implementation of the changes from the (Underwater Glass Fix)[https://www.nexusmods.com/fallout4/mods/58671] mod, though adjustments were made to account for precombined material swaps, as the original mod didn't think to setup individual static entries for the swaps and had to be remade accordingly.
 --- PluginFix BeforeImage AfterImage
+
+00006
+- xx004C5A BillboardPRP_CollectionIdent
+           Materials\SetDressing\Signage\BillboardSignPRP.BGSM
+-- Intended to allow for replacement of the nearest billboard to the Vault 111 entrance for collection users to better identify installs with.
+
