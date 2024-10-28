@@ -55,3 +55,9 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
            Scripts\PRP\DisableObjectIfModExists.pex
 		   Scripts\Source\User\PRP\DisableObjectIfModExists.psc
 -- A Story Manager Branch Node needed to setup the Creation Club specific detections and dynamic disables implemented to handle them. Also include the compiled script itself and source.
+
+00008 (Merge needed)
+- xxxxxxx PRPUtilityCell
+  xxxxxxx PRP_HeavyFlamerCustomizationEnable etc
+-- Setup for the dynamic ref disables for CC detection and include the actually disabled refs as needed.
+
