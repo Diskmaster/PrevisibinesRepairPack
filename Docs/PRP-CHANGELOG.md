@@ -50,7 +50,7 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
            Materials\SetDressing\Signage\BillboardSignPRP.BGSM
 -- Intended to allow for replacement of the nearest billboard to the Vault 111 entrance for collection users to better identify installs with.
 
-00007
+00007 (Merged into 00008)
 - xx004C5B PRP_CompatQuests
            Scripts\PRP\DisableObjectIfModExists.pex
 		   Scripts\Source\User\PRP\DisableObjectIfModExists.psc
