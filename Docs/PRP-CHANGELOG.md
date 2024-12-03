@@ -56,8 +56,70 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 		   Scripts\Source\User\PRP\DisableObjectIfModExists.psc
 -- A Story Manager Branch Node needed to setup the Creation Club specific detections and dynamic disables implemented to handle them. Also include the compiled script itself and source.
 
-00008 (Merge needed)
+00008
 - xxxxxxx PRPUtilityCell
   xxxxxxx PRP_HeavyFlamerCustomizationEnable etc
 -- Setup for the dynamic ref disables for CC detection and include the actually disabled refs as needed.
 
+00009 (Mastered to 8)
+-- Dev message used in the VaultSuitCustomization quest, don't remember if I actually used it.
+
+00010
+-- (New in PRP NG) Brand new Layer for tagging duplicate references, any future patches in sequence with duplicate refs will depend on this plugin
+
+00011
+-- CroupManor01 (2 Duplicate Refs)
+
+00012
+-- PrewarVault111 (2 Duplicate Refs, Adapt (Vault 111 Floor Fix)[https://www.nexusmods.com/fallout4/mods/28167] 's changes, but actually apply them to the actual references to fix z-fighting)
+
+00013
+-- Malden Drainage (1 Duplicate Ref)
+
+00014
+-- DLC04BottlingPlant01 (284 Duplicate Refs)
+
+00015
+-- DLC04BottlingPlant01 (Correct z-pos for a set of debris to fix z-fighting and also adjust the position of a wall chunk to better fit.
+
+00016
+-- CambridgeMassChemical01 (Fix the chimney block's bad placement and exclude an IndustrialMachine07 reference that wasn't occluding well. I need to go back and recheck this one.)
+
+00017
+-- Switchboard (1 Duplicate Ref)
+
+00018
+-- DLC03VimPopFactory01 (2 Duplicate Refs, moved a wall and bookshelf to stop it clobbering a nearby door.
+
+00019
+-- CharlestownHouse01 (1 Duplicate Ref)
+
+00020
+-- BeaconHillApartments (3 Duplicate Refs)
+
+00021
+-- BADTFL01 (5 Duplicate Refs)
+
+00022
+-- BeantownBrewery01 (4 Duplicate Refs, one of which is a BlackWireSpline01, UFO4P could pick up this fix)
+
+00023
+-- MassStateHouse01 (70 Duplicate Refs)
+
+00024
+-- ConcordFactory (1 Duplicate Ref)
+
+00025
+-- ConcordSpeakeasy (5 Duplicate Refs)
+
+00026
+-- BostonPublicLibrary01 (3 Duplicate Refs)
+
+00027
+-- RelayTowerInt15A (1 Duplicate Ref)
+
+00028
+-- ShawHighSchool01 (5 Duplicate Refs)
+
+00029
+-- DLC03NucleusCommandCenter01 
