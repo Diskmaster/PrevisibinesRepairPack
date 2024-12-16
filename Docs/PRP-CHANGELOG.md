@@ -59,11 +59,9 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
   xxxxxxx PRP_HeavyFlamerCustomizationEnable etc
 -- Setup for the dynamic ref disables for CC detection and include the actually disabled refs as needed.
 
-00009 (Mastered to 8)
--- Dev message used in the VaultSuitCustomization quest, don't remember if I actually used it.
-
+00009
 00010
--- (New in PRP NG) Brand new Layer for tagging duplicate references, any future patches in sequence with duplicate refs will depend on this plugin
+-- Reserved slots.
 
 00011
 -- CroupManor01 (2 Duplicate Refs)
@@ -181,3 +179,45 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 
 00049
 -- DLC04BradbertonsOffice01 (3 Duplicate Refs)
+
+00050
+-- FortStrong01 (1 Duplicate Ref)
+
+00051
+-- ArcjetSystems01 (9 Duplicate Refs, 1 Adjustment to fix z-fighting)
+
+00052
+-- DLC03FarHarborLastPlank (5 Duplicate Refs)
+
+00053 needs layer assign past this point
+-- DLC03EagleCoveTannery01 (2 Duplicate Refs)
+
+00054 
+-- Vault114 (4 Duplicate Refs, 4 Adjustments for umbra and z-fighting)
+
+00055
+-- DLC03BeaverCreekLanes01 (2 Duplicate Refs)
+
+00056
+-- RevereBeachStation01 (11 Duplicate Refs)
+
+00057
+-- Financial06 (2 Duplicate Refs)
+
+00058
+-- DLC04HubPackLair (1 Duplicate Ref)
+
+00059
+-- TheBigDig01 (15 Duplicate Refs)
+
+00060
+-- GoodneighborTheThirdRail (2 Duplicate Refs)
+
+00061
+-- SuperDuperMart01 (1 Duplicate Ref)
+
+00062
+-- SentinelSite01 (2 Duplicate Refs)
+
+00063
+-- 
