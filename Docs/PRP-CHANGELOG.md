@@ -295,4 +295,85 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 -- HubrisComics01 (6 Duplicate Refs)
 
 00089
--- 
+-- WaldenPond01
+
+00090
+-- PoseidonEnergy01 (10 Duplicate Refs)
+
+00091
+-- PoseidonEnergy02 (3 Duplicate Refs)
+
+00092
+-- AndrewStation01 (5 Duplicate Refs, 2 Refs that need grounded to the floor)
+
+00093
+-- zLexingtonGarage (1 Duplicate Ref)
+
+00094
+-- zUnusedSubwayTerminalShowcase (3 Duplicate Refs)
+
+00095
+-- DLC04SafariWelcomeCenter (5 Duplicate Refs)
+
+00096 REVIEW
+-- zVitalePumphouse (5 Ref moves, inherited from UFO4P bug 20283)
+
+00097
+-- DLC04HubFizztopMountainInterior01 (2 Duplicate Refs)
+
+00098
+-- GoodneighborTheMemoryDen (1 Duplicate Ref, 1 Ref moved to fix z-fighting)
+
+00099
+-- HestersRobotics01 (1 Duplicate Ref)
+
+00100
+-- DmndOutfieldShengsHouse01 (2 Duplicate Refs)
+
+00101
+-- MedfordMemorial01 (8 Duplicate Refs, 4 Refs got moved to fix z-fighting and placement issues)
+
+00102
+-- Vault81 (fill me in, I did stuff here related to the suit CC changes)
+
+00103
+-- UFOCrashSite01 (1 Duplicate Ref)
+
+00104
+-- Theater16PearwoodResidences01 (4 Duplicate Refs, 2 Previs Fixes)
+
+00105
+-- Waterfront02 (2 Duplicate ref)
+
+00106
+-- EsplanadeChurch01 (1 Duplicate Ref)
+
+00107 UPSTREAM NEW RECORD
+-- MassFusion01 (14 Duplicate Refs, 1 Z-fighting Fix, 1 New ref that needs upstreamed)
+
+00108
+-- InstituteAdvSystems (1 Duplicate Ref)
+
+00109
+-- Vault81Secret (fill me in, more work was done here)
+
+00110
+-- CambridgePolymerLabs01 (5 Duplicate Refs, 4 Bookcases moved to address wall z-fighting)
+
+00111
+-- InstituteReactor (1 Duplicate Ref)
+
+00112 REVIEW
+-- USSConstitution01 (1 Duplicate Ref, 1 ref move to resolve a previs issue)
+
+00113
+-- InstituteTunnel01 (6 Duplicate Refs, 1 position fix and a scaling change to address bad pipe placement)
+
+00114
+-- GwinnettBrewery01 (6 Duplicate Refs)
+
+00115
+-- DLC04SafariReptileHouse (1 Duplicate Ref)
+
+00116 CHECKPOINT CONTINUE HERE
+-- Vault11402
