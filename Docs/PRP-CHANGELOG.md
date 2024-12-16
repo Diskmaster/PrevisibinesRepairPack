@@ -220,4 +220,79 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 -- SentinelSite01 (2 Duplicate Refs)
 
 00063
+-- FederalRationStockpile01 (5 Duplicate Refs, 3 Refs to fix seams, and a ref to fix z-fighting)
+
+00064
+-- FaneuilHall01 (3 Duplicate Refs, 2 refs needed moved to fix previs issues)
+
+00065
+-- FortHagen01 (3 Duplicate Refs)
+
+00066
+-- DmndSecurity01 (2 Refs needed excluded for previs fixes, one table moved and fix the correct matswap in the ceiling)
+
+00067
+-- EastBostonPrep01 (5 Duplicate Refs)
+
+00068
+-- PrydwenHull01 (7 Duplicate Refs)
+
+00069 REVIEW ACTI CHANGE
+-- DLC04GZVaultTec01 (9 Duplicate Refs, one moved railway activator for reasons I don't remember)
+
+00070
+-- TheCastle01 (2 Duplicate Refs)
+
+00071
+-- ArcjetSystems02 (1 Duplicate Ref)
+
+00072
+-- Wattz01 (3 Duplicate Refs)
+
+00073, 00074 (update UFO4P number 73 -> 74)
+-- GoodneighborBobbisPlace (1 Duplicate Ref, 2 reference moves as per UFO4P Bug 20310)
+
+00075
+-- FraternalPost11501 (6 Duplicate refs, 1 Persistent ref move that otherwise clobbers a picture frame?)
+
+00076
+-- DLC03FringeCoveDocks01 (REVIEW)
+
+00077
+-- DLC04TransitCenter01 (1 Duplicate Ref)
+
+00078
+-- PrydwenHull03 (1 Duplicate Ref)
+
+00079
+-- CambridgeKendallHospital01 (11 Duplicate Refs)
+
+00080
+-- WarehouseIndustrialMachines (2 Duplicate Refs)
+
+00081
+-- CambridgePD01 (1 Duplicate Ref)
+
+00082
+-- MiltonGeneral01 (10 Duplicate Refs)
+
+00083
+-- DLC04GZNukaGalaxy (21 Duplicate Refs)
+
+00084
+-- ConcordMuseum01 (18 Duplicate Refs, 3 Stair block moves to fix a tiny hole that lets you see into the void)
+
+00085
+-- GoodneighborOldStateHouse (2 Duplicate Refs)
+
+00086
+-- REObject02Interior (1 Duplicate Ref)
+
+00087
+-- GNN01 (6 Duplicate Refs)
+
+00088
+-- HubrisComics01 (6 Duplicate Refs)
+
+00089
 -- 
