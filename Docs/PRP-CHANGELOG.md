@@ -375,5 +375,116 @@ Previsibines Repair Pack Changelog - All entries are noted by FormID where appli
 00115
 -- DLC04SafariReptileHouse (1 Duplicate Ref)
 
-00116 CHECKPOINT CONTINUE HERE
--- Vault11402
+00116 A trio of SCOLs were excluded previously in response to strangeness in the cell, needs reviewed.
+-- Vault11402 (1 Duplicate Ref)
+
+00117
+-- DLC04HubOperatorLair01
+
+00118
+-- zLexingtonApartments (1 Duplicate Ref, 9 Ref Adjustments to tighten up placement seams)
+
+00119
+-- DLC04BottlingPlant02 (1 Duplicate Ref)
+
+00120
+-- SandyCovesHome01 (2 Duplicate Refs)
+
+00121
+-- MahkraFishpacking01 (1 Duplicate Ref)
+
+00122 A metric fuckton of work (342 records) that needs to be recorded in more detail.
+-- Vault75
+
+00123
+-- DLC04GZTheater01 (2 Duplicate Refs)
+
+00124
+-- DmndArturosHouse01 (1 Duplicate Ref)
+
+00125
+-- FourLeafFishpacking01 (4 Duplicate Refs, and moved a Barnacle)
+
+00126
+-- RailroadHQ01 (4 Duplicate Refs)
+
+00127
+-- TrinityChurch01 (1 Duplicate Ref)
+
+00128
+-- BostonCommon02 (1 Duplicate Ref)
+
+00129
+-- GlowingSeaPOIDB06Int (5 Duplicate Refs, one Duplicate Activator)
+
+00130
+-- CambridgeEastCITRaiderCamp01 (1 Duplicate Ref)
+
+00131
+-- TheaterMassBayMedicalCenter02 (1 Duplicate Ref)
+
+00132
+-- SouthBoston25 (3 Duplicate Refs)
+
+00133
+-- GeneralAtomicsGalleria01 (4 Duplicate Refs)
+
+00134
+-- zUnusuedGrenades (1 Duplicate Ref)
+
+00135
+-- TheaterMassBayMedicalCenter01 (2 Duplicate Refs)
+
+00136
+-- DLC03NucleusSubInterior01 (10 Duplicate Refs)
+
+00137
+-- BackStreetApparel01 (2 Duplicate Refs, 2 corrected refs to fix debris z-fighting)
+
+00138
+-- Waterfront12 (2 Duplicate Refs)
+
+00139
+-- Financial28 (1 Duplicate Ref, 5 corrected refs to fix z-fighting, including one UFO4P placement fix)
+
+00140
+-- InstituteOldRobotics01 (1 Duplicate Ref)
+
+00141
+-- zUnusedFinancial23 (2 Duplicate Refs)
+
+00142
+-- GwinnettBrewery02 (Moved a pair of barnacles)
+
+00143
+-- Financial14 (1 Duplicate Ref)
+
+00144
+-- DmndCitySurplus01New (1 Duplicate Ref)
+
+00145
+-- ShamrockTaphouse01 (1 Duplicate Ref)
+
+00146
+-- FensBank01 (1 Duplicate Ref)
+
+00147
+-- FortHagen02 (2 Duplicate Refs, 1 New Ref (HitDebrisPileCeiling03, copied to 00001 plugin)
+
+00148
+-- UniversityPoint01 (3 Duplicate Refs, 1 ref adjusted for z-fighting?)
+
+00149
+-- zInstituteRotunda (5 Duplicate Refs)
+
+00150
+-- WarrenTheater01 (1 Duplicate Ref)
+
+00151
+-- DLC04Gauntlet01 (5 Duplicate Refs)
+
+00152
+-- InstituteFEVlab (2 Duplicate Refs)
+
+00153 CHECKPOINT - Blk7 SubBlk0 - 342CB
+-- RelayTowerInt12 (NEW ROOM MARKER?! Was I drunk?)
